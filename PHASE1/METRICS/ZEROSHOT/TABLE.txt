@@ -1,0 +1,26 @@
+=== Solution Counts by Folder ===
+ Folder Index                           Folder Name  Solution Count
+            1            CadastroClienteSimples_gpt               1
+            2 proc_SuporteTecnicoSimplesDS_deepseek               3
+            3        proc_SuporteTecnicoSimples_gpt               3
+            4    ReparoComputadorSimplesDS_deepseek               3
+
+=== Experiment Results ===
+                          Folder Name                                 Model   Recall  Precision  Generalization  Simplicity
+           CadastroClienteSimples_gpt        S0_CadastroClienteSimples.bpmn 1.000000   0.999473        0.962788    0.894737
+proc_SuporteTecnicoSimplesDS_deepseek  S0_proc_SuporteTecnicoSimplesDS.bpmn 0.941778   1.000000        0.963883    0.904762
+proc_SuporteTecnicoSimplesDS_deepseek  S1_proc_SuporteTecnicoSimplesDS.bpmn 0.834024   1.000000        0.962600    1.000000
+proc_SuporteTecnicoSimplesDS_deepseek  S3_proc_SuporteTecnicoSimplesDS.bpmn 0.835976   1.000000        0.962600    1.000000
+       proc_SuporteTecnicoSimples_gpt S0_proc_SuporteTecnicoSimplesGPT.bpmn 0.847039   0.962786        0.960017    0.904762
+       proc_SuporteTecnicoSimples_gpt S1_proc_SuporteTecnicoSimplesGPT.bpmn 0.813500   0.947642        0.962776    1.000000
+       proc_SuporteTecnicoSimples_gpt S3_proc_SuporteTecnicoSimplesGPT.bpmn 0.849929   1.000000        0.962776    1.000000
+   ReparoComputadorSimplesDS_deepseek     S0_ReparoComputadorSimplesDS.bpmn 0.960363   1.000000        0.962944    0.894737
+   ReparoComputadorSimplesDS_deepseek     S1_ReparoComputadorSimplesDS.bpmn 0.939122   1.000000        0.962944    1.000000
+   ReparoComputadorSimplesDS_deepseek     S2_ReparoComputadorSimplesDS.bpmn 0.939594   1.000000        0.962944    1.000000
+
+=== Metric Statistics (Mean and Std Dev) ===
+ Folder Index                           Folder Name  Solution Count  Recall Mean  Recall Std Dev  Precision Mean  Precision Std Dev  Generalization Mean  Generalization Std Dev  Simplicity Mean  Simplicity Std Dev
+            1            CadastroClienteSimples_gpt               1       1.0000             NaN          0.9995                NaN               0.9628                     NaN           0.8947                 NaN
+            2 proc_SuporteTecnicoSimplesDS_deepseek               3       0.8706          0.0617          1.0000             0.0000               0.9630                  0.0007           0.9683              0.0550
+            3        proc_SuporteTecnicoSimples_gpt               3       0.8368          0.0202          0.9701             0.0269               0.9619                  0.0016           0.9683              0.0550
+            4    ReparoComputadorSimplesDS_deepseek               3       0.9464          0.0121          1.0000             0.0000               0.9629                  0.0000           0.9649              0.0608

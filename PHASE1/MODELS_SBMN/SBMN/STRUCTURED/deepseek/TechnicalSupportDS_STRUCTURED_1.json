@@ -1,0 +1,81 @@
+{
+    "Atividades": [
+        {
+            "tipo": "Tarefa",
+            "nome": "Registrar solicitação",
+            "id": "Rs1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Classificar solicitação",
+            "id": "Cs1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Agendar atendimento presencial",
+            "id": "Ac1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Executar atendimento presencial",
+            "id": "Ep1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Executar suporte técnico",
+            "id": "Es1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Encerrar atendimento",
+            "id": "Ec1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Notificar cliente",
+            "id": "Nc1"
+        }
+    ],
+    "Situacoes": [
+        {
+            "esquerda": [{"id": "Cs1"}],
+            "operador": "DEP",
+            "direita": [{"id": "Rs1"}]
+        },
+        {
+            "esquerda": [{"id": "Ac1"}],
+            "operador": "DEP",
+            "direita": [{"id": "Cs1"}]
+        },
+        {
+            "esquerda": [{"id": "Ep1"}],
+            "operador": "DEP",
+            "direita": [{"id": "Ac1"}]
+        },
+        {
+            "esquerda": [{"id": "Ec1"}],
+            "operador": "DEP",
+            "direita": [{"id": "Ep1"}]
+        },
+        {
+            "esquerda": [{"id": "Nc1"}],
+            "operador": "DEP",
+            "direita": [{"id": "Ep1"}]
+        },
+        {
+            "esquerda": [{"id": "Ec1"}],
+            "operador": "DEP",
+            "direita": [{"id": "Es1"}]
+        },
+        {
+            "esquerda": [{"id": "Nc1"}],
+            "operador": "DEP",
+            "direita": [{"id": "Es1"}]
+        },
+        {
+            "esquerda": [{"id": "Ep1"}],
+            "operador": "XOR",
+            "direita": [{"id": "Es1"}]
+        }
+    ]
+}

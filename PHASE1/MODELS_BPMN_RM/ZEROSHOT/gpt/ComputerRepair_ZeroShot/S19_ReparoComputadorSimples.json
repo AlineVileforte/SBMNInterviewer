@@ -1,0 +1,185 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Rc1"
+      ]
+    },
+    {
+      "id": "Rc1",
+      "name": "Receive_Computer",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "Or1"
+      ]
+    },
+    {
+      "id": "Or1",
+      "name": "Make_Budget",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Rc1"
+      ],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Or1"
+      ],
+      "outComing": [
+        "Hw1",
+        "G1"
+      ]
+    },
+    {
+      "id": "Hw1",
+      "name": "Repair_Hardware",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE12"
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "G1",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "Par6",
+        "Sr1"
+      ]
+    },
+    {
+      "id": "Sr1",
+      "name": "Return_Computer_Without_Repair",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.2.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "XORCLOSE11"
+      ]
+    },
+    {
+      "id": "Par6",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.2.0.1.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "Dr1",
+        "Te1"
+      ]
+    },
+    {
+      "id": "Dr1",
+      "name": "Return_Repaired_Computer",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.1.1.1.",
+      "inComing": [
+        "Par6"
+      ],
+      "outComing": [
+        "Sw1"
+      ]
+    },
+    {
+      "id": "Sw1",
+      "name": "Reinstall_Software",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.1.1.1.",
+      "inComing": [
+        "Dr1"
+      ],
+      "outComing": [
+        "PARCLOSE10"
+      ]
+    },
+    {
+      "id": "Te1",
+      "name": "Test",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.1.1.2.",
+      "inComing": [
+        "Par6"
+      ],
+      "outComing": [
+        "PARCLOSE10"
+      ]
+    },
+    {
+      "id": "PARCLOSE10",
+      "name": "PARCLOSE10",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.2.0.1.1.1.",
+      "inComing": [
+        "Sw1",
+        "Te1"
+      ],
+      "outComing": [
+        "XORCLOSE11"
+      ]
+    },
+    {
+      "id": "XORCLOSE11",
+      "name": "XORCLOSE11",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.0.2.",
+      "inComing": [
+        "Sr1",
+        "PARCLOSE10"
+      ],
+      "outComing": [
+        "XORCLOSE12"
+      ]
+    },
+    {
+      "id": "XORCLOSE12",
+      "name": "XORCLOSE12",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "Hw1",
+        "XORCLOSE11"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "XORCLOSE12"
+      ],
+      "outComing": []
+    }
+  ]
+}

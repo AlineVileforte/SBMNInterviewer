@@ -1,0 +1,99 @@
+{
+  "Atividades": [
+    {
+      "id": "Re1",
+      "nome": "Receber solicitacao",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Co1",
+      "nome": "Coletar dados",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Rg1",
+      "nome": "Registrar dados",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Va1",
+      "nome": "Validar dados",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Sc1",
+      "nome": "Solicitar correcao",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Ap1",
+      "nome": "Aprovar cadastro",
+      "tipo": "Tarefa"
+    }
+  ],
+  "Situacoes": [
+    {
+      "esquerda": [
+        { "id": "Co1" }
+      ],
+      "direita": [
+        { "id": "Re1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Rg1" }
+      ],
+      "direita": [
+        { "id": "Co1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Va1" }
+      ],
+      "direita": [
+        { "id": "Rg1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Ap1" }
+      ],
+      "direita": [
+        { "id": "Va1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Sc1" }
+      ],
+      "direita": [
+        { "id": "Va1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Sc1" }
+      ],
+      "direita": [
+        { "id": "Ap1" }
+      ],
+      "operador": "XOR"
+    },
+    {
+      "esquerda": [
+        { "id": "Sc1" }
+      ],
+      "direita": [
+        { "id": "Co1" }
+      ],
+      "operador": "JMP"
+    }
+  ]
+}

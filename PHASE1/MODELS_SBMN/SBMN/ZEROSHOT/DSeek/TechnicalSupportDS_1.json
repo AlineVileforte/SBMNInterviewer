@@ -1,0 +1,96 @@
+{
+    "Atividades": [
+        {
+            "tipo": "Tarefa",
+            "nome": "Registrar solicitação",
+            "id": "RS1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Classificar solicitação",
+            "id": "CS2"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Agendar atendimento presencial",
+            "id": "AP3"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Executar atendimento presencial",
+            "id": "EA4"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Executar suporte técnico",
+            "id": "ES5"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Encerrar atendimento",
+            "id": "EN6"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Notificar cliente",
+            "id": "NC7"
+        }
+    ],
+    "Situacoes": [
+        {
+            "esquerda": [{"id": "CS2"}],
+            "operador": "DEP",
+            "direita": [{"id": "RS1"}]
+        },
+        {
+            "esquerda": [{"id": "AP3"}],
+            "operador": "DEP",
+            "direita": [{"id": "CS2"}]
+        },
+        {
+            "esquerda": [{"id": "EA4"}],
+            "operador": "DEP",
+            "direita": [{"id": "AP3"}]
+        },
+        {
+            "esquerda": [{"id": "ES5"}],
+            "operador": "DEP",
+            "direita": [{"id": "CS2"}]
+        },
+        {
+            "esquerda": [{"id": "ES5"}],
+            "operador": "XOR",
+            "direita": [{"id": "EA4"}]
+        },
+        {
+            "esquerda": [{"id": "EN6"}],
+            "operador": "DEP",
+            "direita": [{"id": "EA4"}]
+        },
+        {
+            "esquerda": [{"id": "EN6"}],
+            "operador": "DEP",
+            "direita": [{"id": "ES5"}]
+        },
+        {
+            "esquerda": [{"id": "NC7"}],
+            "operador": "DEP",
+            "direita": [{"id": "EA4"}]
+        },
+        {
+            "esquerda": [{"id": "NC7"}],
+            "operador": "DEP",
+            "direita": [{"id": "ES5"}]
+        },
+        {
+            "esquerda": [{"id": "EA4"}],
+            "operador": "Xor",
+            "direita": [{"id": "ES5"}]
+        },
+        {
+            "esquerda": [{"id": "EA4"}],
+            "operador": "Xor",
+            "direita": [{"id": "ES5"}]
+        }
+    ]
+}

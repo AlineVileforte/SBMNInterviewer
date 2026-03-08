@@ -1,0 +1,133 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Rs1"
+      ]
+    },
+    {
+      "id": "Rs1",
+      "name": "Registrar solicitacao",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "Cl1"
+      ]
+    },
+    {
+      "id": "Cl1",
+      "name": "Classificar solicitacao",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Rs1"
+      ],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Cl1"
+      ],
+      "outComing": [
+        "Ag1",
+        "Es1"
+      ]
+    },
+    {
+      "id": "Es1",
+      "name": "Executar suporte tecnico",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE6"
+      ]
+    },
+    {
+      "id": "Ag1",
+      "name": "Agendar atendimento presencial",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "Ep1"
+      ]
+    },
+    {
+      "id": "Ep1",
+      "name": "Executar atendimento presencial",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "Ag1"
+      ],
+      "outComing": [
+        "XORCLOSE6"
+      ]
+    },
+    {
+      "id": "XORCLOSE6",
+      "name": "XORCLOSE6",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "Es1",
+        "Ep1"
+      ],
+      "outComing": [
+        "En1"
+      ]
+    },
+    {
+      "id": "En1",
+      "name": "Encerrar atendimento",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE6"
+      ],
+      "outComing": [
+        "Nt1"
+      ]
+    },
+    {
+      "id": "Nt1",
+      "name": "Notificar cliente",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "En1"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.",
+      "inComing": [
+        "Nt1"
+      ],
+      "outComing": []
+    }
+  ]
+}

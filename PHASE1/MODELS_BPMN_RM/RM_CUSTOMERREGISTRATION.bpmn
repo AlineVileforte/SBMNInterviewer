@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:definitions xmlns:ns0="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:ns1="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:ns2="http://www.omg.org/spec/DD/20100524/DC" xmlns:ns3="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_001" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.10.1">
+  <ns0:process id="Process_001" isExecutable="false">
+    <ns0:startEvent id="Default_init">
+      <ns0:outgoing>Flow_Default_init_Re1</ns0:outgoing>
+    </ns0:startEvent>
+    <ns0:task id="Re1" name="Receber solicitacao">
+      <ns0:incoming>Flow_Default_init_Re1</ns0:incoming>
+      <ns0:outgoing>Flow_Re1_XOR_JMPBB_Sc1_Co1</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="Co1" name="Coletar dados">
+      <ns0:incoming>Flow_XOR_JMPBB_Sc1_Co1_Co1</ns0:incoming>
+      <ns0:outgoing>Flow_Co1_Rg1</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="Rg1" name="Registrar dados">
+      <ns0:incoming>Flow_Co1_Rg1</ns0:incoming>
+      <ns0:outgoing>Flow_Rg1_Va1</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="Va1" name="Validar dados">
+      <ns0:incoming>Flow_Rg1_Va1</ns0:incoming>
+      <ns0:outgoing>Flow_Va1_G0</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="G0">
+      <ns0:incoming>Flow_Va1_G0</ns0:incoming>
+      <ns0:outgoing>Flow_G0_Sc1</ns0:outgoing>
+      <ns0:outgoing>Flow_G0_Ap1</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:task id="Sc1" name="Solicitar correcao">
+      <ns0:incoming>Flow_G0_Sc1</ns0:incoming>
+      <ns0:outgoing>Flow_Sc1_XOR_JMPAA_Sc1_Co1</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="Ap1" name="Aprovar cadastro">
+      <ns0:incoming>Flow_G0_Ap1</ns0:incoming>
+      <ns0:outgoing>Flow_Ap1_XORCLOSE7</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="XORCLOSE7">
+      <ns0:incoming>Flow_Ap1_XORCLOSE7</ns0:incoming>
+      <ns0:incoming>Flow_XOR_JMPAA_Sc1_Co1_XORCLOSE7</ns0:incoming>
+      <ns0:outgoing>Flow_0cy4lbv</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:endEvent id="END">
+      <ns0:incoming>Flow_0cy4lbv</ns0:incoming>
+    </ns0:endEvent>
+    <ns0:exclusiveGateway id="XOR_JMPAA_Sc1_Co1">
+      <ns0:incoming>Flow_Sc1_XOR_JMPAA_Sc1_Co1</ns0:incoming>
+      <ns0:outgoing>Flow_XOR_JMPAA_Sc1_Co1_XORCLOSE7</ns0:outgoing>
+      <ns0:outgoing>Flow_XOR_JMPAA_Sc1_Co1_XOR_JMPBB_Sc1_Co1</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:exclusiveGateway id="XOR_JMPBB_Sc1_Co1">
+      <ns0:incoming>Flow_Re1_XOR_JMPBB_Sc1_Co1</ns0:incoming>
+      <ns0:incoming>Flow_XOR_JMPAA_Sc1_Co1_XOR_JMPBB_Sc1_Co1</ns0:incoming>
+      <ns0:outgoing>Flow_XOR_JMPBB_Sc1_Co1_Co1</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:sequenceFlow id="Flow_Default_init_Re1" sourceRef="Default_init" targetRef="Re1" />
+    <ns0:sequenceFlow id="Flow_Re1_XOR_JMPBB_Sc1_Co1" sourceRef="Re1" targetRef="XOR_JMPBB_Sc1_Co1" />
+    <ns0:sequenceFlow id="Flow_Co1_Rg1" sourceRef="Co1" targetRef="Rg1" />
+    <ns0:sequenceFlow id="Flow_Rg1_Va1" sourceRef="Rg1" targetRef="Va1" />
+    <ns0:sequenceFlow id="Flow_Va1_G0" sourceRef="Va1" targetRef="G0" />
+    <ns0:sequenceFlow id="Flow_G0_Sc1" sourceRef="G0" targetRef="Sc1" />
+    <ns0:sequenceFlow id="Flow_G0_Ap1" sourceRef="G0" targetRef="Ap1" />
+    <ns0:sequenceFlow id="Flow_Sc1_XOR_JMPAA_Sc1_Co1" sourceRef="Sc1" targetRef="XOR_JMPAA_Sc1_Co1" />
+    <ns0:sequenceFlow id="Flow_Ap1_XORCLOSE7" sourceRef="Ap1" targetRef="XORCLOSE7" />
+    <ns0:sequenceFlow id="Flow_XOR_JMPAA_Sc1_Co1_XORCLOSE7" sourceRef="XOR_JMPAA_Sc1_Co1" targetRef="XORCLOSE7" />
+    <ns0:sequenceFlow id="Flow_XOR_JMPAA_Sc1_Co1_XOR_JMPBB_Sc1_Co1" sourceRef="XOR_JMPAA_Sc1_Co1" targetRef="XOR_JMPBB_Sc1_Co1" />
+    <ns0:sequenceFlow id="Flow_XOR_JMPBB_Sc1_Co1_Co1" sourceRef="XOR_JMPBB_Sc1_Co1" targetRef="Co1" />
+    <ns0:sequenceFlow id="Flow_0cy4lbv" sourceRef="XORCLOSE7" targetRef="END" />
+  </ns0:process>
+  <ns1:BPMNDiagram id="BPMNDiagram_1">
+    <ns1:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_001">
+      <ns1:BPMNShape id="_BPMNShape_Ap1" bpmnElement="Ap1">
+        <ns2:Bounds x="1190" y="85" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Sc1" bpmnElement="Sc1">
+        <ns2:Bounds x="1170" y="260" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Va1" bpmnElement="Va1">
+        <ns2:Bounds x="810" y="170" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_XOR_JMPBB_Sc1_Co1" bpmnElement="XOR_JMPBB_Sc1_Co1" isMarkerVisible="true">
+        <ns2:Bounds x="385" y="200" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Re1" bpmnElement="Re1">
+        <ns2:Bounds x="230" y="185" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Default_init" bpmnElement="Default_init">
+        <ns2:Bounds x="152" y="212" width="36" height="36" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Co1" bpmnElement="Co1">
+        <ns2:Bounds x="500" y="185" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_XOR_JMPAA_Sc1_Co1" bpmnElement="XOR_JMPAA_Sc1_Co1" isMarkerVisible="true">
+        <ns2:Bounds x="1345" y="275" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_XORCLOSE7" bpmnElement="XORCLOSE7" isMarkerVisible="true">
+        <ns2:Bounds x="1425" y="205" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_END" bpmnElement="END">
+        <ns2:Bounds x="1522" y="212" width="36" height="36" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Rg1" bpmnElement="Rg1">
+        <ns2:Bounds x="660" y="185" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_G0" bpmnElement="G0" isMarkerVisible="true">
+        <ns2:Bounds x="975" y="200" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge id="Flow_Default_init_Re1_di" bpmnElement="Flow_Default_init_Re1">
+        <ns3:waypoint x="188" y="227" />
+        <ns3:waypoint x="209" y="227" />
+        <ns3:waypoint x="209" y="222" />
+        <ns3:waypoint x="230" y="222" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Re1_XOR_JMPBB_Sc1_Co1_di" bpmnElement="Flow_Re1_XOR_JMPBB_Sc1_Co1">
+        <ns3:waypoint x="330" y="226" />
+        <ns3:waypoint x="358" y="226" />
+        <ns3:waypoint x="358" y="225" />
+        <ns3:waypoint x="385" y="225" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Co1_Rg1_di" bpmnElement="Flow_Co1_Rg1">
+        <ns3:waypoint x="600" y="225" />
+        <ns3:waypoint x="660" y="225" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Rg1_Va1_di" bpmnElement="Flow_Rg1_Va1">
+        <ns3:waypoint x="760" y="225" />
+        <ns3:waypoint x="785" y="225" />
+        <ns3:waypoint x="785" y="210" />
+        <ns3:waypoint x="810" y="210" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Va1_G0_di" bpmnElement="Flow_Va1_G0">
+        <ns3:waypoint x="910" y="218" />
+        <ns3:waypoint x="982" y="218" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G0_Sc1_di" bpmnElement="Flow_G0_Sc1">
+        <ns3:waypoint x="1000" y="250" />
+        <ns3:waypoint x="1000" y="300" />
+        <ns3:waypoint x="1170" y="300" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G0_Ap1_di" bpmnElement="Flow_G0_Ap1">
+        <ns3:waypoint x="1000" y="200" />
+        <ns3:waypoint x="1000" y="128" />
+        <ns3:waypoint x="1190" y="128" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Sc1_XOR_JMPAA_Sc1_Co1_di" bpmnElement="Flow_Sc1_XOR_JMPAA_Sc1_Co1">
+        <ns3:waypoint x="1270" y="302" />
+        <ns3:waypoint x="1298" y="302" />
+        <ns3:waypoint x="1298" y="299" />
+        <ns3:waypoint x="1346" y="299" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Ap1_XORCLOSE7_di" bpmnElement="Flow_Ap1_XORCLOSE7">
+        <ns3:waypoint x="1290" y="140" />
+        <ns3:waypoint x="1450" y="140" />
+        <ns3:waypoint x="1450" y="205" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_XOR_JMPAA_Sc1_Co1_XORCLOSE7_di" bpmnElement="Flow_XOR_JMPAA_Sc1_Co1_XORCLOSE7">
+        <ns3:waypoint x="1395" y="300" />
+        <ns3:waypoint x="1450" y="300" />
+        <ns3:waypoint x="1450" y="255" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_XOR_JMPAA_Sc1_Co1_XOR_JMPBB_Sc1_Co1_di" bpmnElement="Flow_XOR_JMPAA_Sc1_Co1_XOR_JMPBB_Sc1_Co1">
+        <ns3:waypoint x="1370" y="325" />
+        <ns3:waypoint x="1370" y="390" />
+        <ns3:waypoint x="410" y="390" />
+        <ns3:waypoint x="410" y="250" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_XOR_JMPBB_Sc1_Co1_Co1_di" bpmnElement="Flow_XOR_JMPBB_Sc1_Co1_Co1">
+        <ns3:waypoint x="435" y="225" />
+        <ns3:waypoint x="468" y="225" />
+        <ns3:waypoint x="468" y="224" />
+        <ns3:waypoint x="500" y="224" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_0cy4lbv_di" bpmnElement="Flow_0cy4lbv">
+        <ns3:waypoint x="1475" y="230" />
+        <ns3:waypoint x="1522" y="230" />
+      </ns1:BPMNEdge>
+    </ns1:BPMNPlane>
+  </ns1:BPMNDiagram>
+</ns0:definitions>

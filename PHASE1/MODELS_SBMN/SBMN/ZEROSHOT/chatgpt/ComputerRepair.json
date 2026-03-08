@@ -1,0 +1,131 @@
+{
+  "Atividades": [
+    {
+      "id": "Rc1",
+      "nome": "Receive_Computer",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Or1",
+      "nome": "Make_Budget",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Sr1",
+      "nome": "Return_Computer_Without_Repair",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Sw1",
+      "nome": "Reinstall_Software",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Hw1",
+      "nome": "Repair_Hardware",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Te1",
+      "nome": "Test",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Dr1",
+      "nome": "Return_Repaired_Computer",
+      "tipo": "Tarefa"
+    }
+  ],
+  "Situacoes": [
+    {
+      "esquerda": [
+        { "id": "Or1" }
+      ],
+      "direita": [
+        { "id": "Rc1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Sr1" }
+      ],
+      "direita": [
+        { "id": "Rc1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Hw1" }
+      ],
+      "direita": [
+        { "id": "Sw1" }
+      ],
+      "operador": "XOR"
+    },
+    {
+      "esquerda": [
+        { "id": "Hw1" }
+      ],
+      "direita": [
+        { "id": "Sr1" }
+      ],
+      "operador": "XOR"
+    },
+    {
+      "esquerda": [
+        { "id": "Sw1" }
+      ],
+      "direita": [
+        { "id": "Sr1" }
+      ],
+      "operador": "XOR"
+    },
+    {
+      "esquerda": [
+        { "id": "Hw1" }
+      ],
+      "direita": [
+        { "id": "Or1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Sw1" }
+      ],
+      "direita": [
+        { "id": "Or1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Te1" }
+      ],
+      "direita": [
+        { "id": "Hw1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Te1" }
+      ],
+      "direita": [
+        { "id": "Sw1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Dr1" }
+      ],
+      "direita": [
+        { "id": "Te1" }
+      ],
+      "operador": "DEP"
+    }
+  ]
+}

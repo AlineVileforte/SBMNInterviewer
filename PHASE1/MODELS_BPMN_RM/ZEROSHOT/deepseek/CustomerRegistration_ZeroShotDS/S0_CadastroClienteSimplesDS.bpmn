@@ -1,0 +1,37 @@
+<ns0:definitions xmlns:ns0="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:ns1="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:ns2="http://www.omg.org/spec/DD/20100524/DC" xmlns:ns3="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_001" targetNamespace="http://bpmn.io/schema/bpmn">
+  <ns0:process id="Process_001" isExecutable="false">
+    <ns0:startEvent id="Default_init">
+      <ns0:outgoing>Flow_Default_init_RS1</ns0:outgoing>
+    </ns0:startEvent>
+    <ns0:task id="RS1" name="Receber solicita&#231;&#227;o">
+      <ns0:incoming>Flow_Default_init_RS1</ns0:incoming>
+      <ns0:outgoing>Flow_RS1_END</ns0:outgoing>
+    </ns0:task>
+    <ns0:endEvent id="END">
+      <ns0:incoming>Flow_RS1_END</ns0:incoming>
+    </ns0:endEvent>
+    <ns0:sequenceFlow id="Flow_Default_init_RS1" sourceRef="Default_init" targetRef="RS1" />
+    <ns0:sequenceFlow id="Flow_RS1_END" sourceRef="RS1" targetRef="END" />
+  </ns0:process>
+  <ns1:BPMNDiagram id="BPMNDiagram_1">
+    <ns1:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_001">
+      <ns1:BPMNShape id="_BPMNShape_Default_init" bpmnElement="Default_init">
+        <ns2:Bounds x="100" y="100" width="36" height="36" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_RS1" bpmnElement="RS1">
+        <ns2:Bounds x="250" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_END" bpmnElement="END">
+        <ns2:Bounds x="400" y="100" width="36" height="36" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge id="Flow_Default_init_RS1_di" bpmnElement="Flow_Default_init_RS1">
+        <ns3:waypoint x="136" y="118" />
+        <ns3:waypoint x="250" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_RS1_END_di" bpmnElement="Flow_RS1_END">
+        <ns3:waypoint x="350" y="140" />
+        <ns3:waypoint x="400" y="118" />
+      </ns1:BPMNEdge>
+    </ns1:BPMNPlane>
+  </ns1:BPMNDiagram>
+</ns0:definitions>

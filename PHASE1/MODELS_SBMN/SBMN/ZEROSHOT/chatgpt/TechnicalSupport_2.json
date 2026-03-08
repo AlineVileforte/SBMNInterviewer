@@ -1,0 +1,113 @@
+{
+  "Atividades": [
+    {
+      "id": "Rs1",
+      "nome": "Registrar solicitacao",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Cl1",
+      "nome": "Classificar solicitacao",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Ag1",
+      "nome": "Agendar atendimento presencial",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Ep1",
+      "nome": "Executar atendimento presencial",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Es1",
+      "nome": "Executar suporte tecnico",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "En1",
+      "nome": "Encerrar atendimento",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Nt1",
+      "nome": "Notificar cliente",
+      "tipo": "Tarefa"
+    }
+  ],
+  "Situacoes": [
+    {
+      "esquerda": [
+        { "id": "Cl1" }
+      ],
+      "direita": [
+        { "id": "Rs1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Ag1" }
+      ],
+      "direita": [
+        { "id": "Es1" }
+      ],
+      "operador": "XOR"
+    },
+    {
+      "esquerda": [
+        { "id": "Ag1" }
+      ],
+      "direita": [
+        { "id": "Cl1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Ep1" }
+      ],
+      "direita": [
+        { "id": "Cl1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Es1" }
+      ],
+      "direita": [
+        { "id": "Cl1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "En1" }
+      ],
+      "direita": [
+        { "id": "Ep1" }
+      ],
+      "operador": "DEPC"
+    },
+    {
+      "esquerda": [
+        { "id": "En1" }
+      ],
+      "direita": [
+        { "id": "Es1" }
+      ],
+      "operador": "DEPC"
+    },
+    {
+      "esquerda": [
+        { "id": "Nt1" }
+      ],
+      "direita": [
+        { "id": "En1" }
+      ],
+      "operador": "DEP"
+    }
+  ]
+}

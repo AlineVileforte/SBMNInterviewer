@@ -1,0 +1,66 @@
+{
+    "Atividades": [
+        {
+            "tipo": "Tarefa",
+            "nome": "Receber solicitacao",
+            "id": "RS1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Coletar dados",
+            "id": "CD2"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Registrar dados",
+            "id": "RD3"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Validar dados",
+            "id": "VD4"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Solicitar correcao",
+            "id": "SC5"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Aprovar cadastro",
+            "id": "AC6"
+        }
+    ],
+    "Situacoes": [
+        {
+            "esquerda": [{"id": "CD2"}],
+            "operador": "DEP",
+            "direita": [{"id": "RS1"}]
+        },
+        {
+            "esquerda": [{"id": "RD3"}],
+            "operador": "DEP",
+            "direita": [{"id": "CD2"}]
+        },
+        {
+            "esquerda": [{"id": "VD4"}],
+            "operador": "DEP",
+            "direita": [{"id": "RD3"}]
+        },
+        {
+            "esquerda": [{"id": "AC6"}],
+            "operador": "DEP",
+            "direita": [{"id": "VD4"}]
+        },
+        {
+            "esquerda": [{"id": "SC5"}],
+            "operador": "DEP",
+            "direita": [{"id": "VD4"}]
+        },
+        {
+            "esquerda": [{"id": "CD2"}],
+            "operador": "DEP",
+            "direita": [{"id": "SC5"}]
+        }
+    ]
+}

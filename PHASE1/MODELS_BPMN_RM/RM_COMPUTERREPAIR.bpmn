@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:definitions xmlns:ns0="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:ns1="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:ns2="http://www.omg.org/spec/DD/20100524/DC" xmlns:ns3="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_001" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.10.1">
+  <ns0:process id="Process_001" isExecutable="false">
+    <ns0:startEvent id="Default_init">
+      <ns0:outgoing>Flow_1hcsvti</ns0:outgoing>
+    </ns0:startEvent>
+    <ns0:task id="RC1" name="Receber computador">
+      <ns0:incoming>Flow_1hcsvti</ns0:incoming>
+      <ns0:outgoing>Flow_RC1_G0</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="G0">
+      <ns0:incoming>Flow_RC1_G0</ns0:incoming>
+      <ns0:outgoing>Flow_G0_DS3</ns0:outgoing>
+      <ns0:outgoing>Flow_G0_FO2</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:task id="DS3" name="Devolver computador sem reparo">
+      <ns0:incoming>Flow_G0_DS3</ns0:incoming>
+      <ns0:outgoing>Flow_DS3_XORCLOSE10</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="FO2" name="Fazer orçamento">
+      <ns0:incoming>Flow_G0_FO2</ns0:incoming>
+      <ns0:outgoing>Flow_1u4b72l</ns0:outgoing>
+    </ns0:task>
+    <ns0:parallelGateway id="Par4">
+      <ns0:incoming>Flow_1hzji1y</ns0:incoming>
+      <ns0:outgoing>Flow_Par4_RS4</ns0:outgoing>
+      <ns0:outgoing>Flow_Par4_RH5</ns0:outgoing>
+    </ns0:parallelGateway>
+    <ns0:task id="RS4" name="Reinstalar software">
+      <ns0:incoming>Flow_Par4_RS4</ns0:incoming>
+      <ns0:outgoing>Flow_RS4_PARCLOSE7</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="RH5" name="Reparar hardware">
+      <ns0:incoming>Flow_Par4_RH5</ns0:incoming>
+      <ns0:outgoing>Flow_RH5_PARCLOSE7</ns0:outgoing>
+    </ns0:task>
+    <ns0:parallelGateway id="PARCLOSE7">
+      <ns0:incoming>Flow_RS4_PARCLOSE7</ns0:incoming>
+      <ns0:incoming>Flow_RH5_PARCLOSE7</ns0:incoming>
+      <ns0:outgoing>Flow_PARCLOSE7_TE6</ns0:outgoing>
+    </ns0:parallelGateway>
+    <ns0:task id="TE6" name="Testar">
+      <ns0:incoming>Flow_PARCLOSE7_TE6</ns0:incoming>
+      <ns0:outgoing>Flow_TE6_DR7</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="DR7" name="Devolver computador reparado">
+      <ns0:incoming>Flow_0yz8lpj</ns0:incoming>
+      <ns0:outgoing>Flow_1e79b5e</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="XORCLOSE10">
+      <ns0:incoming>Flow_DS3_XORCLOSE10</ns0:incoming>
+      <ns0:incoming>Flow_1e79b5e</ns0:incoming>
+      <ns0:outgoing>Flow_0ugtezw</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:endEvent id="END">
+      <ns0:incoming>Flow_0ugtezw</ns0:incoming>
+    </ns0:endEvent>
+    <ns0:sequenceFlow id="Flow_RC1_G0" sourceRef="RC1" targetRef="G0" />
+    <ns0:sequenceFlow id="Flow_G0_DS3" sourceRef="G0" targetRef="DS3" />
+    <ns0:sequenceFlow id="Flow_G0_FO2" sourceRef="G0" targetRef="FO2" />
+    <ns0:sequenceFlow id="Flow_DS3_XORCLOSE10" sourceRef="DS3" targetRef="XORCLOSE10" />
+    <ns0:sequenceFlow id="Flow_Par4_RS4" sourceRef="Par4" targetRef="RS4" />
+    <ns0:sequenceFlow id="Flow_Par4_RH5" sourceRef="Par4" targetRef="RH5" />
+    <ns0:sequenceFlow id="Flow_RS4_PARCLOSE7" sourceRef="RS4" targetRef="PARCLOSE7" />
+    <ns0:sequenceFlow id="Flow_RH5_PARCLOSE7" sourceRef="RH5" targetRef="PARCLOSE7" />
+    <ns0:sequenceFlow id="Flow_PARCLOSE7_TE6" sourceRef="PARCLOSE7" targetRef="TE6" />
+    <ns0:sequenceFlow id="Flow_TE6_DR7" sourceRef="TE6" targetRef="Gateway_1ugqau4" />
+    <ns0:exclusiveGateway id="Gateway_0airc6d">
+      <ns0:incoming>Flow_15uut0z</ns0:incoming>
+      <ns0:incoming>Flow_1u4b72l</ns0:incoming>
+      <ns0:outgoing>Flow_1hzji1y</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:exclusiveGateway id="Gateway_1ugqau4">
+      <ns0:incoming>Flow_TE6_DR7</ns0:incoming>
+      <ns0:outgoing>Flow_0yz8lpj</ns0:outgoing>
+      <ns0:outgoing>Flow_15uut0z</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:sequenceFlow id="Flow_0yz8lpj" sourceRef="Gateway_1ugqau4" targetRef="DR7" />
+    <ns0:sequenceFlow id="Flow_15uut0z" sourceRef="Gateway_1ugqau4" targetRef="Gateway_0airc6d" />
+    <ns0:sequenceFlow id="Flow_1hzji1y" sourceRef="Gateway_0airc6d" targetRef="Par4" />
+    <ns0:sequenceFlow id="Flow_1u4b72l" sourceRef="FO2" targetRef="Gateway_0airc6d" />
+    <ns0:sequenceFlow id="Flow_1e79b5e" sourceRef="DR7" targetRef="XORCLOSE10" />
+    <ns0:sequenceFlow id="Flow_0ugtezw" sourceRef="XORCLOSE10" targetRef="END" />
+    <ns0:sequenceFlow id="Flow_1hcsvti" sourceRef="Default_init" targetRef="RC1" />
+  </ns0:process>
+  <ns1:BPMNDiagram id="BPMNDiagram_1">
+    <ns1:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_001">
+      <ns1:BPMNShape id="_BPMNShape_RH5" bpmnElement="RH5">
+        <ns2:Bounds x="890" y="295" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_TE6" bpmnElement="TE6">
+        <ns2:Bounds x="1290" y="200" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_RS4" bpmnElement="RS4">
+        <ns2:Bounds x="890" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_DR7" bpmnElement="DR7">
+        <ns2:Bounds x="1500" y="200" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="Gateway_1ugqau4_di" bpmnElement="Gateway_1ugqau4" isMarkerVisible="true">
+        <ns2:Bounds x="1415" y="215" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_PARCLOSE7" bpmnElement="PARCLOSE7">
+        <ns2:Bounds x="1015" y="205" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Par4" bpmnElement="Par4">
+        <ns2:Bounds x="815" y="215" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="Gateway_0airc6d_di" bpmnElement="Gateway_0airc6d" isMarkerVisible="true">
+        <ns2:Bounds x="705" y="215" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_FO2" bpmnElement="FO2">
+        <ns2:Bounds x="540" y="200" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_DS3" bpmnElement="DS3">
+        <ns2:Bounds x="540" y="370" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_XORCLOSE10" bpmnElement="XORCLOSE10" isMarkerVisible="true">
+        <ns2:Bounds x="1525" y="345" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_END" bpmnElement="END">
+        <ns2:Bounds x="1622" y="352" width="36" height="36" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_G0" bpmnElement="G0" isMarkerVisible="true">
+        <ns2:Bounds x="435" y="310" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_RC1" bpmnElement="RC1">
+        <ns2:Bounds x="260" y="288" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Default_init" bpmnElement="Default_init">
+        <ns2:Bounds x="152" y="310" width="36" height="36" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge id="Flow_RC1_G0_di" bpmnElement="Flow_RC1_G0">
+        <ns3:waypoint x="360" y="335" />
+        <ns3:waypoint x="435" y="335" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G0_DS3_di" bpmnElement="Flow_G0_DS3">
+        <ns3:waypoint x="460" y="360" />
+        <ns3:waypoint x="460" y="418" />
+        <ns3:waypoint x="540" y="418" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G0_FO2_di" bpmnElement="Flow_G0_FO2">
+        <ns3:waypoint x="460" y="310" />
+        <ns3:waypoint x="460" y="243" />
+        <ns3:waypoint x="540" y="243" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_DS3_XORCLOSE10_di" bpmnElement="Flow_DS3_XORCLOSE10">
+        <ns3:waypoint x="640" y="411" />
+        <ns3:waypoint x="1550" y="411" />
+        <ns3:waypoint x="1550" y="395" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Par4_RS4_di" bpmnElement="Flow_Par4_RS4">
+        <ns3:waypoint x="840" y="215" />
+        <ns3:waypoint x="840" y="148" />
+        <ns3:waypoint x="890" y="148" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Par4_RH5_di" bpmnElement="Flow_Par4_RH5">
+        <ns3:waypoint x="840" y="265" />
+        <ns3:waypoint x="840" y="338" />
+        <ns3:waypoint x="890" y="338" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_RS4_PARCLOSE7_di" bpmnElement="Flow_RS4_PARCLOSE7">
+        <ns3:waypoint x="990" y="144" />
+        <ns3:waypoint x="1040" y="144" />
+        <ns3:waypoint x="1040" y="205" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_RH5_PARCLOSE7_di" bpmnElement="Flow_RH5_PARCLOSE7">
+        <ns3:waypoint x="990" y="350" />
+        <ns3:waypoint x="1040" y="350" />
+        <ns3:waypoint x="1040" y="255" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_PARCLOSE7_TE6_di" bpmnElement="Flow_PARCLOSE7_TE6">
+        <ns3:waypoint x="1061" y="226" />
+        <ns3:waypoint x="1253" y="226" />
+        <ns3:waypoint x="1253" y="248" />
+        <ns3:waypoint x="1290" y="248" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_TE6_DR7_di" bpmnElement="Flow_TE6_DR7">
+        <ns3:waypoint x="1390" y="240" />
+        <ns3:waypoint x="1415" y="240" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_0yz8lpj_di" bpmnElement="Flow_0yz8lpj">
+        <ns3:waypoint x="1465" y="240" />
+        <ns3:waypoint x="1500" y="240" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_15uut0z_di" bpmnElement="Flow_15uut0z">
+        <ns3:waypoint x="1440" y="215" />
+        <ns3:waypoint x="1440" y="80" />
+        <ns3:waypoint x="730" y="80" />
+        <ns3:waypoint x="730" y="215" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_1hzji1y_di" bpmnElement="Flow_1hzji1y">
+        <ns3:waypoint x="755" y="240" />
+        <ns3:waypoint x="815" y="240" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_1u4b72l_di" bpmnElement="Flow_1u4b72l">
+        <ns3:waypoint x="640" y="240" />
+        <ns3:waypoint x="705" y="240" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_1e79b5e_di" bpmnElement="Flow_1e79b5e">
+        <ns3:waypoint x="1550" y="280" />
+        <ns3:waypoint x="1550" y="345" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_0ugtezw_di" bpmnElement="Flow_0ugtezw">
+        <ns3:waypoint x="1575" y="370" />
+        <ns3:waypoint x="1622" y="370" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_1hcsvti_di" bpmnElement="Flow_1hcsvti">
+        <ns3:waypoint x="188" y="328" />
+        <ns3:waypoint x="260" y="328" />
+      </ns1:BPMNEdge>
+    </ns1:BPMNPlane>
+  </ns1:BPMNDiagram>
+</ns0:definitions>

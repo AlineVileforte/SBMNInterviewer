@@ -1,0 +1,175 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Rc1"
+      ]
+    },
+    {
+      "id": "Rc1",
+      "name": "Receber computador",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "Fo1"
+      ]
+    },
+    {
+      "id": "Fo1",
+      "name": "Fazer orçamento",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Rc1"
+      ],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Fo1"
+      ],
+      "outComing": [
+        "Ds1",
+        "XOR_JMPBB_Te1_Rs1"
+      ]
+    },
+    {
+      "id": "Ds1",
+      "name": "Devolver computador sem reparo",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE8"
+      ]
+    },
+    {
+      "id": "Rs1",
+      "name": "Reinstalar software",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G0",
+        "XOR_JMPBB_Te1_Rs1"
+      ],
+      "outComing": [
+        "XOR_JMPBB_Te1_Rh1"
+      ]
+    },
+    {
+      "id": "Rh1",
+      "name": "Reparar hardware",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "Rs1",
+        "XOR_JMPBB_Te1_Rh1"
+      ],
+      "outComing": [
+        "Te1"
+      ]
+    },
+    {
+      "id": "Te1",
+      "name": "Testar",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "Rh1"
+      ],
+      "outComing": [
+        "XOR_JMPAA_Te1"
+      ]
+    },
+    {
+      "id": "Dr1",
+      "name": "Devolver computador reparado",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "XOR_JMPAA_Te1"
+      ],
+      "outComing": [
+        "XORCLOSE8"
+      ]
+    },
+    {
+      "id": "XORCLOSE8",
+      "name": "XORCLOSE8",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "Ds1",
+        "Dr1"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "XORCLOSE8"
+      ],
+      "outComing": []
+    },
+    {
+      "id": "XOR_JMPAA_Te1",
+      "name": "XOR_JMPAA_Testar",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "Te1"
+      ],
+      "outComing": [
+        "Dr1",
+        "XOR_JMPBB_Te1_Rs1",
+        "XOR_JMPBB_Te1_Rh1"
+      ]
+    },
+    {
+      "id": "XOR_JMPBB_Te1_Rs1",
+      "name": "XOR_JMPBB_Reinstalar software",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "XOR_JMPAA_Te1",
+        "G0"
+      ],
+      "outComing": [
+        "Rs1"
+      ]
+    },
+    {
+      "id": "XOR_JMPBB_Te1_Rh1",
+      "name": "XOR_JMPBB_Reparar hardware",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "XOR_JMPAA_Te1",
+        "Rs1"
+      ],
+      "outComing": [
+        "Rh1"
+      ]
+    }
+  ]
+}

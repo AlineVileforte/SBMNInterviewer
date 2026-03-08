@@ -1,0 +1,159 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Rs1"
+      ]
+    },
+    {
+      "id": "Rs1",
+      "name": "Registrar solicitacao",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "Cl1"
+      ]
+    },
+    {
+      "id": "Cl1",
+      "name": "Classificar solicitacao",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Rs1"
+      ],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Cl1"
+      ],
+      "outComing": [
+        "Par4",
+        "Es1"
+      ]
+    },
+    {
+      "id": "Es1",
+      "name": "Executar suporte tecnico",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE8"
+      ]
+    },
+    {
+      "id": "Par4",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "Ag1",
+        "Ep1"
+      ]
+    },
+    {
+      "id": "Ag1",
+      "name": "Agendar atendimento presencial",
+      "type": "TASK",
+      "branch": "0.0.0.1.1.1.",
+      "inComing": [
+        "Par4"
+      ],
+      "outComing": [
+        "PARCLOSE7"
+      ]
+    },
+    {
+      "id": "Ep1",
+      "name": "Executar atendimento presencial",
+      "type": "TASK",
+      "branch": "0.0.0.1.1.2.",
+      "inComing": [
+        "Par4"
+      ],
+      "outComing": [
+        "PARCLOSE7"
+      ]
+    },
+    {
+      "id": "PARCLOSE7",
+      "name": "PARCLOSE7",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.1.1.1.",
+      "inComing": [
+        "Ag1",
+        "Ep1"
+      ],
+      "outComing": [
+        "XORCLOSE8"
+      ]
+    },
+    {
+      "id": "XORCLOSE8",
+      "name": "XORCLOSE8",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "Es1",
+        "PARCLOSE7"
+      ],
+      "outComing": [
+        "En1"
+      ]
+    },
+    {
+      "id": "En1",
+      "name": "Encerrar atendimento",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE8"
+      ],
+      "outComing": [
+        "Nt1"
+      ]
+    },
+    {
+      "id": "Nt1",
+      "name": "Notificar cliente",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "En1"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.",
+      "inComing": [
+        "Nt1"
+      ],
+      "outComing": []
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+=== Solution Counts by Folder ===
+ Folder Index                       Folder Name  Solution Count
+            1     CadastroClienteDS_Estruturado               3
+            2 proc_SuporteTecnicoDS_Estruturado               3
+            3  ReparodeComputadorDS_Estruturado               3
+
+=== Experiment Results ===
+                      Folder Name                                     Model   Recall  Precision  Generalization  Simplicity
+    CadastroClienteDS_Estruturado     S0_CadastroClienteDS_Estruturado.bpmn 0.828989   0.600000        0.844397    0.882353
+    CadastroClienteDS_Estruturado     S2_CadastroClienteDS_Estruturado.bpmn 0.989929   0.741582        0.963328    0.818182
+    CadastroClienteDS_Estruturado     S5_CadastroClienteDS_Estruturado.bpmn 1.000000   0.999741        0.963328    0.894737
+proc_SuporteTecnicoDS_Estruturado S0_proc_SuporteTecnicoDS_Estruturado.bpmn 0.942444   1.000000        0.963919    0.904762
+proc_SuporteTecnicoDS_Estruturado S2_proc_SuporteTecnicoDS_Estruturado.bpmn 0.834714   1.000000        0.962645    1.000000
+proc_SuporteTecnicoDS_Estruturado S3_proc_SuporteTecnicoDS_Estruturado.bpmn 0.837429   1.000000        0.962645    1.000000
+ ReparodeComputadorDS_Estruturado  S0_ReparodeComputadorDS_Estruturado.bpmn 0.849456   0.880880        0.955135    0.833333
+ ReparodeComputadorDS_Estruturado  S1_ReparodeComputadorDS_Estruturado.bpmn 0.802108   0.800000        0.960507    0.826087
+ ReparodeComputadorDS_Estruturado  S2_ReparodeComputadorDS_Estruturado.bpmn 0.846836   0.873942        0.954647    0.833333
+
+=== Metric Statistics (Mean and Std Dev) ===
+ Folder Index                       Folder Name  Solution Count  Recall Mean  Recall Std Dev  Precision Mean  Precision Std Dev  Generalization Mean  Generalization Std Dev  Simplicity Mean  Simplicity Std Dev
+            1     CadastroClienteDS_Estruturado               3       0.9396          0.0960          0.7804             0.2027               0.9237                  0.0687           0.8651              0.0411
+            2 proc_SuporteTecnicoDS_Estruturado               3       0.8715          0.0614          1.0000             0.0000               0.9631                  0.0007           0.9683              0.0550
+            3  ReparodeComputadorDS_Estruturado               3       0.8328          0.0266          0.8516             0.0448               0.9568                  0.0033           0.8309              0.0042
+
+
+
+
+\begin{table}[]
+\begin{tabular}{lcrrrr}
+\hline
+\multicolumn{6}{c}{Métricas do por Processo}                                                                                                                                                                      \\ \hline
+Processo                            & Soluções & \multicolumn{1}{c}{Recall (Média)} & \multicolumn{1}{c}{Precision (Média)} & \multicolumn{1}{c}{Generalization (Média)} & \multicolumn{1}{c}{Simplicity (Média)} \\
+CadastroClienteDS\_Estruturado      & 3        & 0.9396                             & 0.7804                                & 0.9237                                     & 0.8651                                 \\
+proc\_SuporteTecnicoDS\_Estruturado & 3        & 0.8715                             & 1.0000                                & 0.9631                                     & 0.9683                                 \\
+ReparodeComputadorDS\_Estruturado   & 3        & 0.8328                             & 0.8516                                & 0.9568                                     & 0.8309                                 \\ \hline
+\end{tabular}
+\end{table}

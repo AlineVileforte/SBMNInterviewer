@@ -1,0 +1,185 @@
+{
+  "Atividades": [
+    {
+      "id": "Rc1",
+      "nome": "Receber computador",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Fo1",
+      "nome": "Fazer orçamento",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Ds1",
+      "nome": "Devolver computador sem reparo",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Rs1",
+      "nome": "Reinstalar software",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Rh1",
+      "nome": "Reparar hardware",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Te1",
+      "nome": "Testar",
+      "tipo": "Tarefa"
+    },
+    {
+      "id": "Dr1",
+      "nome": "Devolver computador reparado",
+      "tipo": "Tarefa"
+    }
+  ],
+  "Situacoes": [
+    {
+      "esquerda": [
+        { "id": "Fo1" }
+      ],
+      "direita": [
+        { "id": "Rc1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Rs1" }
+      ],
+      "direita": [
+        { "id": "Fo1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Rh1" }
+      ],
+      "direita": [
+        { "id": "Fo1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Te1" }
+      ],
+      "direita": [
+        { "id": "Fo1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Dr1" }
+      ],
+      "direita": [
+        { "id": "Fo1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Ds1" }
+      ],
+      "direita": [
+        { "id": "Rs1" }
+      ],
+      "operador": "XOR"
+    },
+    {
+      "esquerda": [
+        { "id": "Ds1" }
+      ],
+      "direita": [
+        { "id": "Rh1" }
+      ],
+      "operador": "XOR"
+    },
+    {
+      "esquerda": [
+        { "id": "Ds1" }
+      ],
+      "direita": [
+        { "id": "Te1" }
+      ],
+      "operador": "XOR"
+    },
+    {
+      "esquerda": [
+        { "id": "Ds1" }
+      ],
+      "direita": [
+        { "id": "Dr1" }
+      ],
+      "operador": "XOR"
+    },
+    {
+      "esquerda": [
+        { "id": "Te1" }
+      ],
+      "direita": [
+        { "id": "Rs1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Dr1" }
+      ],
+      "direita": [
+        { "id": "Rs1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Te1" }
+      ],
+      "direita": [
+        { "id": "Rh1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Dr1" }
+      ],
+      "direita": [
+        { "id": "Rh1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Dr1" }
+      ],
+      "direita": [
+        { "id": "Te1" }
+      ],
+      "operador": "DEP"
+    },
+    {
+      "esquerda": [
+        { "id": "Te1" }
+      ],
+      "direita": [
+        { "id": "Rs1" }
+      ],
+      "operador": "JMP"
+    },
+    {
+      "esquerda": [
+        { "id": "Te1" }
+      ],
+      "direita": [
+        { "id": "Rh1" }
+      ],
+      "operador": "JMP"
+    }
+  ]
+}

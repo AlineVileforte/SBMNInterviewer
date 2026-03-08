@@ -1,0 +1,173 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Re1"
+      ]
+    },
+    {
+      "id": "Re1",
+      "name": "Receber solicitacao",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "XOR_JMPBB_Sc1_Co1"
+      ]
+    },
+    {
+      "id": "Co1",
+      "name": "Coletar dados",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPBB_Sc1_Co1"
+      ],
+      "outComing": [
+        "Rg1"
+      ]
+    },
+    {
+      "id": "Rg1",
+      "name": "Registrar dados",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Co1"
+      ],
+      "outComing": [
+        "Par3"
+      ]
+    },
+    {
+      "id": "Par3",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Rg1"
+      ],
+      "outComing": [
+        "Va1",
+        "G0"
+      ]
+    },
+    {
+      "id": "Va1",
+      "name": "Validar dados",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Par3"
+      ],
+      "outComing": [
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Par3"
+      ],
+      "outComing": [
+        "Sc1",
+        "Ap1"
+      ]
+    },
+    {
+      "id": "Sc1",
+      "name": "Solicitar correcao",
+      "type": "TASK",
+      "branch": "0.0.1.2.1.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XOR_JMPAA_Sc1_Co1"
+      ]
+    },
+    {
+      "id": "Ap1",
+      "name": "Aprovar cadastro",
+      "type": "TASK",
+      "branch": "0.0.1.2.1.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE8"
+      ]
+    },
+    {
+      "id": "XORCLOSE8",
+      "name": "XORCLOSE8",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.2.1.1.",
+      "inComing": [
+        "Ap1",
+        "XOR_JMPAA_Sc1_Co1"
+      ],
+      "outComing": [
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "PARCLOSE9",
+      "name": "PARCLOSE9",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Va1",
+        "XORCLOSE8"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "PARCLOSE9"
+      ],
+      "outComing": []
+    },
+    {
+      "id": "XOR_JMPAA_Sc1_Co1",
+      "name": "XOR_JMPAA_Solicitar correcao",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.2.1.1.",
+      "inComing": [
+        "Sc1"
+      ],
+      "outComing": [
+        "XORCLOSE8",
+        "XOR_JMPBB_Sc1_Co1"
+      ]
+    },
+    {
+      "id": "XOR_JMPBB_Sc1_Co1",
+      "name": "XOR_JMPBB_Coletar dados",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Re1",
+        "XOR_JMPAA_Sc1_Co1"
+      ],
+      "outComing": [
+        "Co1"
+      ]
+    }
+  ]
+}

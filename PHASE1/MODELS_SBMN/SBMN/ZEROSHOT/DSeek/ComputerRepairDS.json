@@ -1,0 +1,81 @@
+{
+    "Atividades": [
+        {
+            "tipo": "Tarefa",
+            "nome": "Receber computador",
+            "id": "RC1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Fazer orçamento",
+            "id": "FO2"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Devolver computador sem reparo",
+            "id": "DS3"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Reinstalar software",
+            "id": "RS4"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Reparar hardware",
+            "id": "RH5"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Testar",
+            "id": "TE6"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Devolver computador reparado",
+            "id": "DR7"
+        }
+    ],
+    "Situacoes": [
+        {
+            "esquerda": [{"id": "FO2"}],
+            "operador": "DEP",
+            "direita": [{"id": "RC1"}]
+        },
+        {
+            "esquerda": [{"id": "DS3"}],
+            "operador": "DEP",
+            "direita": [{"id": "RC1"}]
+        },
+        {
+            "esquerda": [{"id": "DS3"}],
+            "operador": "XOR",
+            "direita": [{"id": "FO2"}]
+        },
+        {
+            "esquerda": [{"id": "RS4"}],
+            "operador": "DEP",
+            "direita": [{"id": "FO2"}]
+        },
+        {
+            "esquerda": [{"id": "RH5"}],
+            "operador": "DEP",
+            "direita": [{"id": "FO2"}]
+        },
+        {
+            "esquerda": [{"id": "TE6"}],
+            "operador": "DEP",
+            "direita": [{"id": "RS4"}]
+        },
+        {
+            "esquerda": [{"id": "TE6"}],
+            "operador": "DEP",
+            "direita": [{"id": "RH5"}]
+        },
+        {
+            "esquerda": [{"id": "DR7"}],
+            "operador": "DEP",
+            "direita": [{"id": "TE6"}]
+        }
+    ]
+}

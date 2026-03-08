@@ -1,0 +1,159 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "RC1"
+      ]
+    },
+    {
+      "id": "RC1",
+      "name": "Receber computador",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "RC1"
+      ],
+      "outComing": [
+        "DS3",
+        "FO2"
+      ]
+    },
+    {
+      "id": "DS3",
+      "name": "Devolver computador sem reparo",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE10"
+      ]
+    },
+    {
+      "id": "FO2",
+      "name": "Fazer orçamento",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "Par4"
+      ]
+    },
+    {
+      "id": "Par4",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "FO2"
+      ],
+      "outComing": [
+        "RS4",
+        "RH5"
+      ]
+    },
+    {
+      "id": "RS4",
+      "name": "Reinstalar software",
+      "type": "TASK",
+      "branch": "0.0.0.2.1.1.",
+      "inComing": [
+        "Par4"
+      ],
+      "outComing": [
+        "PARCLOSE7"
+      ]
+    },
+    {
+      "id": "RH5",
+      "name": "Reparar hardware",
+      "type": "TASK",
+      "branch": "0.0.0.2.1.2.",
+      "inComing": [
+        "Par4"
+      ],
+      "outComing": [
+        "PARCLOSE7"
+      ]
+    },
+    {
+      "id": "PARCLOSE7",
+      "name": "PARCLOSE7",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.2.1.1.",
+      "inComing": [
+        "RS4",
+        "RH5"
+      ],
+      "outComing": [
+        "TE6"
+      ]
+    },
+    {
+      "id": "TE6",
+      "name": "Testar",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "PARCLOSE7"
+      ],
+      "outComing": [
+        "DR7"
+      ]
+    },
+    {
+      "id": "DR7",
+      "name": "Devolver computador reparado",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "TE6"
+      ],
+      "outComing": [
+        "XORCLOSE10"
+      ]
+    },
+    {
+      "id": "XORCLOSE10",
+      "name": "XORCLOSE10",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "DS3",
+        "DR7"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "XORCLOSE10"
+      ],
+      "outComing": []
+    }
+  ]
+}

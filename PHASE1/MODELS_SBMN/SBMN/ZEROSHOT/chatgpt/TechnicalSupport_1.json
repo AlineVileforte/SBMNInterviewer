@@ -1,0 +1,86 @@
+{
+    "Atividades": [
+        {
+            "tipo": "Tarefa",
+            "nome": "Registrar solicitacao",
+            "id": "Rs1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Classificar solicitacao",
+            "id": "Cl1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Agendar atendimento presencial",
+            "id": "Ag1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Executar atendimento presencial",
+            "id": "Ep1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Executar suporte tecnico",
+            "id": "Es1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Encerrar atendimento",
+            "id": "En1"
+        },
+        {
+            "tipo": "Tarefa",
+            "nome": "Notificar cliente",
+            "id": "Nt1"
+        }
+    ],
+    "Situacoes": [
+        {
+            "esquerda": [{"id": "Cl1"}],
+            "operador": "DEP",
+            "direita": [{"id": "Rs1"}]
+        },
+        {
+            "esquerda": [{"id": "Ag1"}],
+            "operador": "XOR",
+            "direita": [{"id": "Es1"}]
+        },
+        {
+            "esquerda": [{"id": "Ag1"}],
+            "operador": "DEP",
+            "direita": [{"id": "Cl1"}]
+        },
+        {
+            "esquerda": [{"id": "Ep1"}],
+            "operador": "DEP",
+            "direita": [{"id": "Cl1"}]
+        },
+        {
+            "esquerda": [{"id": "Es1"}],
+            "operador": "DEP",
+            "direita": [{"id": "Cl1"}]
+        },
+        {
+            "esquerda": [{"id": "En1"}],
+            "operador": "DEP",
+            "direita": [{"id": "Ep1"}]
+        },
+        {
+            "esquerda": [{"id": "En1"}],
+            "operador": "DEP",
+            "direita": [{"id": "Es1"}]
+        },
+        {
+            "esquerda": [{"id": "Nt1"}],
+            "operador": "DEP",
+            "direita": [{"id": "En1"}]
+        },
+        {
+            "esquerda": [{"id": "Ep1"}],
+            "operador": "Xor",
+            "direita": [{"id": "Es1"}]
+        }
+    ]
+}
