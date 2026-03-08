@@ -13,7 +13,7 @@ The repository provides the materials required to understand and reproduce the e
 
 The repository is organized as follows:
 
-### 1. Appendix
+### 1. Interviews
 This folder contains the **complete interview reports generated during the elicitation sessions**.
 
 Each document includes:
