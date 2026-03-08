@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:definitions xmlns:ns0="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:ns1="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:ns2="http://www.omg.org/spec/DD/20100524/DC" xmlns:ns3="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_001" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.12.0">
+  <ns0:process id="Process_001" isExecutable="false">
+    <ns0:startEvent id="Default_init">
+      <ns0:outgoing>Flow_Default_init_XOR_JMPBB_RNS19_RS15</ns0:outgoing>
+    </ns0:startEvent>
+    <ns0:task id="RS15" name="Request_Service">
+      <ns0:incoming>Flow_XOR_JMPBB_RNS19_RS15_RS15</ns0:incoming>
+      <ns0:outgoing>Flow_RS15_SD12</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="SD12" name="Service_Done">
+      <ns0:incoming>Flow_RS15_SD12</ns0:incoming>
+      <ns0:outgoing>Flow_SD12_AS14</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="AS14" name="Assess_Service">
+      <ns0:incoming>Flow_SD12_AS14</ns0:incoming>
+      <ns0:outgoing>Flow_AS14_G0</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="G0">
+      <ns0:incoming>Flow_AS14_G0</ns0:incoming>
+      <ns0:outgoing>Flow_G0_P3</ns0:outgoing>
+      <ns0:outgoing>Flow_G0_XORCLOSE6</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:task id="P3" name="Pay">
+      <ns0:incoming>Flow_G0_P3</ns0:incoming>
+      <ns0:outgoing>Flow_P3_XORCLOSE6</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="G1">
+      <ns0:incoming>Flow_XOR_JMPAA_RNS19_RS15_XORCLOSE11</ns0:incoming>
+      <ns0:incoming>Flow_P3_XORCLOSE6</ns0:incoming>
+      <ns0:outgoing>Flow_G1_F6</ns0:outgoing>
+      <ns0:outgoing>Flow_G1_RNS19</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:task id="RNS19" name="Request_New_Service">
+      <ns0:incoming>Flow_G1_RNS19</ns0:incoming>
+      <ns0:incoming>Flow_G0_XORCLOSE6</ns0:incoming>
+      <ns0:outgoing>Flow_RNS19_XOR_JMPAA_RNS19_RS15</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="F6" name="Finish">
+      <ns0:incoming>Flow_G1_F6</ns0:incoming>
+      <ns0:outgoing>Flow_0kb4qge</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="XOR_JMPAA_RNS19_RS15">
+      <ns0:incoming>Flow_RNS19_XOR_JMPAA_RNS19_RS15</ns0:incoming>
+      <ns0:outgoing>Flow_XOR_JMPAA_RNS19_RS15_XORCLOSE11</ns0:outgoing>
+      <ns0:outgoing>Flow_XOR_JMPAA_RNS19_RS15_XOR_JMPBB_RNS19_RS15</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:exclusiveGateway id="XOR_JMPBB_RNS19_RS15">
+      <ns0:incoming>Flow_Default_init_XOR_JMPBB_RNS19_RS15</ns0:incoming>
+      <ns0:incoming>Flow_XOR_JMPAA_RNS19_RS15_XOR_JMPBB_RNS19_RS15</ns0:incoming>
+      <ns0:outgoing>Flow_XOR_JMPBB_RNS19_RS15_RS15</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:sequenceFlow id="Flow_Default_init_XOR_JMPBB_RNS19_RS15" sourceRef="Default_init" targetRef="XOR_JMPBB_RNS19_RS15" />
+    <ns0:sequenceFlow id="Flow_RS15_SD12" sourceRef="RS15" targetRef="SD12" />
+    <ns0:sequenceFlow id="Flow_SD12_AS14" sourceRef="SD12" targetRef="AS14" />
+    <ns0:sequenceFlow id="Flow_AS14_G0" sourceRef="AS14" targetRef="G0" />
+    <ns0:sequenceFlow id="Flow_G0_P3" sourceRef="G0" targetRef="P3" />
+    <ns0:sequenceFlow id="Flow_G0_XORCLOSE6" sourceRef="G0" targetRef="RNS19" />
+    <ns0:sequenceFlow id="Flow_P3_XORCLOSE6" sourceRef="P3" targetRef="G1" />
+    <ns0:sequenceFlow id="Flow_G1_F6" sourceRef="G1" targetRef="F6" />
+    <ns0:sequenceFlow id="Flow_G1_RNS19" sourceRef="G1" targetRef="RNS19" />
+    <ns0:sequenceFlow id="Flow_RNS19_XOR_JMPAA_RNS19_RS15" sourceRef="RNS19" targetRef="XOR_JMPAA_RNS19_RS15" />
+    <ns0:sequenceFlow id="Flow_XOR_JMPAA_RNS19_RS15_XORCLOSE11" sourceRef="XOR_JMPAA_RNS19_RS15" targetRef="G1" />
+    <ns0:sequenceFlow id="Flow_XOR_JMPAA_RNS19_RS15_XOR_JMPBB_RNS19_RS15" sourceRef="XOR_JMPAA_RNS19_RS15" targetRef="XOR_JMPBB_RNS19_RS15" />
+    <ns0:sequenceFlow id="Flow_XOR_JMPBB_RNS19_RS15_RS15" sourceRef="XOR_JMPBB_RNS19_RS15" targetRef="RS15" />
+    <ns0:endEvent id="Event_02igxe5">
+      <ns0:incoming>Flow_0kb4qge</ns0:incoming>
+    </ns0:endEvent>
+    <ns0:sequenceFlow id="Flow_0kb4qge" sourceRef="F6" targetRef="Event_02igxe5" />
+  </ns0:process>
+  <ns1:BPMNDiagram id="BPMNDiagram_1">
+    <ns1:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_001">
+      <ns1:BPMNShape id="_BPMNShape_SD12" bpmnElement="SD12">
+        <ns2:Bounds x="630" y="330" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_AS14" bpmnElement="AS14">
+        <ns2:Bounds x="780" y="330" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_G0" bpmnElement="G0" isMarkerVisible="true">
+        <ns2:Bounds x="935" y="360" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_RNS19" bpmnElement="RNS19">
+        <ns2:Bounds x="1200" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_P3" bpmnElement="P3">
+        <ns2:Bounds x="1080" y="330" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_G1" bpmnElement="G1" isMarkerVisible="true">
+        <ns2:Bounds x="1245" y="225" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_XOR_JMPAA_RNS19_RS15" bpmnElement="XOR_JMPAA_RNS19_RS15" isMarkerVisible="true">
+        <ns2:Bounds x="1455" y="118" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_F6" bpmnElement="F6">
+        <ns2:Bounds x="1380" y="330" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_RS15" bpmnElement="RS15">
+        <ns2:Bounds x="420" y="330" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_XOR_JMPBB_RNS19_RS15" bpmnElement="XOR_JMPBB_RNS19_RS15" isMarkerVisible="true">
+        <ns2:Bounds x="305" y="345" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Default_init" bpmnElement="Default_init">
+        <ns2:Bounds x="160" y="352" width="36" height="36" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="Event_02igxe5_di" bpmnElement="Event_02igxe5">
+        <ns2:Bounds x="1582" y="352" width="36" height="36" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge id="Flow_Default_init_XOR_JMPBB_RNS19_RS15_di" bpmnElement="Flow_Default_init_XOR_JMPBB_RNS19_RS15">
+        <ns3:waypoint x="196" y="370" />
+        <ns3:waypoint x="305" y="370" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_RS15_SD12_di" bpmnElement="Flow_RS15_SD12">
+        <ns3:waypoint x="520" y="370" />
+        <ns3:waypoint x="630" y="370" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_SD12_AS14_di" bpmnElement="Flow_SD12_AS14">
+        <ns3:waypoint x="730" y="380" />
+        <ns3:waypoint x="780" y="380" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_AS14_G0_di" bpmnElement="Flow_AS14_G0">
+        <ns3:waypoint x="880" y="385" />
+        <ns3:waypoint x="908" y="385" />
+        <ns3:waypoint x="908" y="378" />
+        <ns3:waypoint x="942" y="378" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G0_P3_di" bpmnElement="Flow_G0_P3">
+        <ns3:waypoint x="981" y="381" />
+        <ns3:waypoint x="1008" y="381" />
+        <ns3:waypoint x="1008" y="378" />
+        <ns3:waypoint x="1080" y="378" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G0_XORCLOSE6_di" bpmnElement="Flow_G0_XORCLOSE6">
+        <ns3:waypoint x="960" y="360" />
+        <ns3:waypoint x="960" y="140" />
+        <ns3:waypoint x="1200" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_P3_XORCLOSE6_di" bpmnElement="Flow_P3_XORCLOSE6">
+        <ns3:waypoint x="1130" y="330" />
+        <ns3:waypoint x="1130" y="250" />
+        <ns3:waypoint x="1245" y="250" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G1_F6_di" bpmnElement="Flow_G1_F6">
+        <ns3:waypoint x="1270" y="275" />
+        <ns3:waypoint x="1270" y="373" />
+        <ns3:waypoint x="1380" y="373" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G1_RNS19_di" bpmnElement="Flow_G1_RNS19">
+        <ns3:waypoint x="1270" y="225" />
+        <ns3:waypoint x="1270" y="180" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_RNS19_XOR_JMPAA_RNS19_RS15_di" bpmnElement="Flow_RNS19_XOR_JMPAA_RNS19_RS15">
+        <ns3:waypoint x="1300" y="142" />
+        <ns3:waypoint x="1456" y="142" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_XOR_JMPAA_RNS19_RS15_XORCLOSE11_di" bpmnElement="Flow_XOR_JMPAA_RNS19_RS15_XORCLOSE11">
+        <ns3:waypoint x="1480" y="168" />
+        <ns3:waypoint x="1480" y="250" />
+        <ns3:waypoint x="1295" y="250" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_XOR_JMPAA_RNS19_RS15_XOR_JMPBB_RNS19_RS15_di" bpmnElement="Flow_XOR_JMPAA_RNS19_RS15_XOR_JMPBB_RNS19_RS15">
+        <ns3:waypoint x="1480" y="118" />
+        <ns3:waypoint x="1480" y="80" />
+        <ns3:waypoint x="330" y="80" />
+        <ns3:waypoint x="330" y="345" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_XOR_JMPBB_RNS19_RS15_RS15_di" bpmnElement="Flow_XOR_JMPBB_RNS19_RS15_RS15">
+        <ns3:waypoint x="355" y="370" />
+        <ns3:waypoint x="420" y="370" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_0kb4qge_di" bpmnElement="Flow_0kb4qge">
+        <ns3:waypoint x="1480" y="370" />
+        <ns3:waypoint x="1582" y="370" />
+      </ns1:BPMNEdge>
+    </ns1:BPMNPlane>
+  </ns1:BPMNDiagram>
+</ns0:definitions>

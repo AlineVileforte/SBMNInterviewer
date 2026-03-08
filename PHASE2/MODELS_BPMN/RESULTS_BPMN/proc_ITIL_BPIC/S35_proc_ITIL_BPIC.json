@@ -1,0 +1,291 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Par0"
+      ]
+    },
+    {
+      "id": "Par0",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "O4",
+        "R12"
+      ]
+    },
+    {
+      "id": "O4",
+      "name": "Open",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Par0"
+      ],
+      "outComing": [
+        "XOR_JMPAA_O4_A10"
+      ]
+    },
+    {
+      "id": "R12",
+      "name": "Reassignment",
+      "type": "TASK",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Par0"
+      ],
+      "outComing": [
+        "PARCLOSE11"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "XOR_JMPAA_O4_A10"
+      ],
+      "outComing": [
+        "Par4",
+        "U6"
+      ]
+    },
+    {
+      "id": "Par4",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.1.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "SC13",
+        "CBC12"
+      ]
+    },
+    {
+      "id": "SC13",
+      "name": "Status_Change",
+      "type": "TASK",
+      "branch": "0.0.1.1.1.1.2.1.",
+      "inComing": [
+        "Par4"
+      ],
+      "outComing": [
+        "PARCLOSE8"
+      ]
+    },
+    {
+      "id": "CBC12",
+      "name": "Caused_by_CI",
+      "type": "TASK",
+      "branch": "0.0.1.1.1.1.2.2.",
+      "inComing": [
+        "Par4"
+      ],
+      "outComing": [
+        "PARCLOSE8"
+      ]
+    },
+    {
+      "id": "U6",
+      "name": "Update",
+      "type": "TASK",
+      "branch": "0.0.1.1.1.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "OU15"
+      ]
+    },
+    {
+      "id": "PARCLOSE8",
+      "name": "PARCLOSE8",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.1.1.2.1.",
+      "inComing": [
+        "SC13",
+        "CBC12"
+      ],
+      "outComing": [
+        "XORCLOSE10"
+      ]
+    },
+    {
+      "id": "OU15",
+      "name": "Operator_Update",
+      "type": "TASK",
+      "branch": "0.0.1.1.1.2.",
+      "inComing": [
+        "U6"
+      ],
+      "outComing": [
+        "XORCLOSE10"
+      ]
+    },
+    {
+      "id": "XORCLOSE10",
+      "name": "XORCLOSE10",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.1.1.1.",
+      "inComing": [
+        "PARCLOSE8",
+        "OU15"
+      ],
+      "outComing": [
+        "PARCLOSE11"
+      ]
+    },
+    {
+      "id": "PARCLOSE11",
+      "name": "PARCLOSE11",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "XORCLOSE10",
+        "R12"
+      ],
+      "outComing": [
+        "XOR_JMPBB_O4_A10"
+      ]
+    },
+    {
+      "id": "A10",
+      "name": "Assignment",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "PARCLOSE11",
+        "XOR_JMPBB_O4_A10"
+      ],
+      "outComing": [
+        "XOR_JMPAA_A10"
+      ]
+    },
+    {
+      "id": "C6",
+      "name": "Closed",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPAA_A10",
+        "XOR_JMPBB_A10_C6"
+      ],
+      "outComing": [
+        "G1"
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "G1",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "C6"
+      ],
+      "outComing": [
+        "QIF23",
+        "XORCLOSE17"
+      ]
+    },
+    {
+      "id": "QIF23",
+      "name": "Quality_Indicator_Fixed",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "XORCLOSE17"
+      ]
+    },
+    {
+      "id": "XORCLOSE17",
+      "name": "XORCLOSE17",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "QIF23",
+        "G1"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "XORCLOSE17"
+      ],
+      "outComing": []
+    },
+    {
+      "id": "XOR_JMPAA_A10",
+      "name": "XOR_JMPAA_Assignment",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "A10"
+      ],
+      "outComing": [
+        "XOR_JMPBB_A10_C6",
+        "XOR_JMPBB_A10_C6",
+        "XOR_JMPBB_O4_A10"
+      ]
+    },
+    {
+      "id": "XOR_JMPBB_A10_C6",
+      "name": "XOR_JMPBB_Closed",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPAA_A10",
+        "XOR_JMPAA_A10"
+      ],
+      "outComing": [
+        "C6"
+      ]
+    },
+    {
+      "id": "XOR_JMPAA_O4_A10",
+      "name": "XOR_JMPAA_Open",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "O4"
+      ],
+      "outComing": [
+        "G0",
+        "XOR_JMPBB_O4_A10"
+      ]
+    },
+    {
+      "id": "XOR_JMPBB_O4_A10",
+      "name": "XOR_JMPBB_Assignment",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPAA_O4_A10",
+        "XOR_JMPAA_A10",
+        "PARCLOSE11"
+      ],
+      "outComing": [
+        "A10"
+      ]
+    }
+  ]
+}

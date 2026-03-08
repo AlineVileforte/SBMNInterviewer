@@ -1,0 +1,225 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "O4"
+      ]
+    },
+    {
+      "id": "O4",
+      "name": "Open",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "Par1"
+      ]
+    },
+    {
+      "id": "Par1",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "A10",
+        "O4"
+      ],
+      "outComing": [
+        "C6",
+        "XOR_JMPBB_O4_A10",
+        "G1"
+      ]
+    },
+    {
+      "id": "A10",
+      "name": "Assignment",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "XOR_JMPBB_O4_A10"
+      ],
+      "outComing": [
+        "Par1"
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "G1",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "XOR_JMPAA_A10_Par1",
+        "Par1"
+      ],
+      "outComing": [
+        "SC13",
+        "U6"
+      ]
+    },
+    {
+      "id": "C6",
+      "name": "Closed",
+      "type": "TASK",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Par1"
+      ],
+      "outComing": [
+        "R12"
+      ]
+    },
+    {
+      "id": "SC13",
+      "name": "Status_Change",
+      "type": "TASK",
+      "branch": "0.0.1.1.1.1.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "CBC12"
+      ]
+    },
+    {
+      "id": "U6",
+      "name": "Update",
+      "type": "TASK",
+      "branch": "0.0.1.1.1.2.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "OU15"
+      ]
+    },
+    {
+      "id": "R12",
+      "name": "Reassignment",
+      "type": "TASK",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "C6"
+      ],
+      "outComing": [
+        "G3"
+      ]
+    },
+    {
+      "id": "CBC12",
+      "name": "Caused_by_CI",
+      "type": "TASK",
+      "branch": "0.0.1.1.1.1.",
+      "inComing": [
+        "SC13"
+      ],
+      "outComing": [
+        "XORCLOSE13"
+      ]
+    },
+    {
+      "id": "OU15",
+      "name": "Operator_Update",
+      "type": "TASK",
+      "branch": "0.0.1.1.1.2.",
+      "inComing": [
+        "U6"
+      ],
+      "outComing": [
+        "XORCLOSE13"
+      ]
+    },
+    {
+      "id": "G3",
+      "name": "G3",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "R12"
+      ],
+      "outComing": [
+        "QIF23",
+        "XORCLOSE14"
+      ]
+    },
+    {
+      "id": "QIF23",
+      "name": "Quality_Indicator_Fixed",
+      "type": "TASK",
+      "branch": "0.0.1.2.1.1.",
+      "inComing": [
+        "G3"
+      ],
+      "outComing": [
+        "XORCLOSE14"
+      ]
+    },
+    {
+      "id": "XORCLOSE13",
+      "name": "XORCLOSE13",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.1.1.1.",
+      "inComing": [
+        "CBC12",
+        "OU15"
+      ],
+      "outComing": [
+        "PARCLOSE15"
+      ]
+    },
+    {
+      "id": "XORCLOSE14",
+      "name": "XORCLOSE14",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.2.1.1.",
+      "inComing": [
+        "QIF23",
+        "G3"
+      ],
+      "outComing": [
+        "PARCLOSE15"
+      ]
+    },
+    {
+      "id": "PARCLOSE15",
+      "name": "PARCLOSE15",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "XORCLOSE13",
+        "XORCLOSE14"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "PARCLOSE15"
+      ],
+      "outComing": []
+    },
+    {
+      "id": "XOR_JMPBB_O4_A10",
+      "name": "XOR_JMPBB_Assignment",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Par1",
+        "XOR_JMPAA_O4_A10"
+      ],
+      "outComing": [
+        "A10"
+      ]
+    }
+  ]
+}

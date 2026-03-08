@@ -1,0 +1,239 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "O4"
+      ]
+    },
+    {
+      "id": "O4",
+      "name": "Open",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "XOR_JMPAA_O4_A10"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPAA_O4_A10"
+      ],
+      "outComing": [
+        "SC13",
+        "U6"
+      ]
+    },
+    {
+      "id": "SC13",
+      "name": "Status_Change",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "CBC12"
+      ]
+    },
+    {
+      "id": "U6",
+      "name": "Update",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "OU15"
+      ]
+    },
+    {
+      "id": "CBC12",
+      "name": "Caused_by_CI",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "SC13"
+      ],
+      "outComing": [
+        "XORCLOSE6"
+      ]
+    },
+    {
+      "id": "OU15",
+      "name": "Operator_Update",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "U6"
+      ],
+      "outComing": [
+        "XORCLOSE6"
+      ]
+    },
+    {
+      "id": "XORCLOSE6",
+      "name": "XORCLOSE6",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "CBC12",
+        "OU15"
+      ],
+      "outComing": [
+        "R12"
+      ]
+    },
+    {
+      "id": "R12",
+      "name": "Reassignment",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE6"
+      ],
+      "outComing": [
+        "XOR_JMPBB_O4_A10"
+      ]
+    },
+    {
+      "id": "A10",
+      "name": "Assignment",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "R12",
+        "XOR_JMPBB_O4_A10"
+      ],
+      "outComing": [
+        "XOR_JMPAA_A10"
+      ]
+    },
+    {
+      "id": "C6",
+      "name": "Closed",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPAA_A10",
+        "XOR_JMPBB_A10_C6"
+      ],
+      "outComing": [
+        "G1"
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "G1",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "C6"
+      ],
+      "outComing": [
+        "QIF23",
+        "XORCLOSE13"
+      ]
+    },
+    {
+      "id": "QIF23",
+      "name": "Quality_Indicator_Fixed",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "XORCLOSE13"
+      ]
+    },
+    {
+      "id": "XORCLOSE13",
+      "name": "XORCLOSE13",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "QIF23",
+        "G1"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "XORCLOSE13"
+      ],
+      "outComing": []
+    },
+    {
+      "id": "XOR_JMPAA_A10",
+      "name": "XOR_JMPAA_Assignment",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "A10"
+      ],
+      "outComing": [
+        "XOR_JMPBB_A10_C6",
+        "XOR_JMPBB_A10_C6",
+        "XOR_JMPBB_O4_A10"
+      ]
+    },
+    {
+      "id": "XOR_JMPBB_A10_C6",
+      "name": "XOR_JMPBB_Closed",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPAA_A10",
+        "XOR_JMPAA_A10"
+      ],
+      "outComing": [
+        "C6"
+      ]
+    },
+    {
+      "id": "XOR_JMPAA_O4_A10",
+      "name": "XOR_JMPAA_Open",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "O4"
+      ],
+      "outComing": [
+        "G0",
+        "XOR_JMPBB_O4_A10"
+      ]
+    },
+    {
+      "id": "XOR_JMPBB_O4_A10",
+      "name": "XOR_JMPBB_Assignment",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPAA_O4_A10",
+        "XOR_JMPAA_A10",
+        "R12"
+      ],
+      "outComing": [
+        "A10"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "IP15"
+      ]
+    },
+    {
+      "id": "IP15",
+      "name": "Initial_Petition",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "IP15"
+      ],
+      "outComing": [
+        "SOD20",
+        "XORCLOSE4"
+      ]
+    },
+    {
+      "id": "SOD20",
+      "name": "Statement_of_Defense",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE4"
+      ]
+    },
+    {
+      "id": "XORCLOSE4",
+      "name": "XORCLOSE4",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "SOD20",
+        "G0"
+      ],
+      "outComing": [
+        "G1"
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "G1",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE4"
+      ],
+      "outComing": [
+        "RTTD20",
+        "XORCLOSE8"
+      ]
+    },
+    {
+      "id": "RTTD20",
+      "name": "Reply_to_the_Defense",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "XORCLOSE8"
+      ]
+    },
+    {
+      "id": "XORCLOSE8",
+      "name": "XORCLOSE8",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "RTTD20",
+        "G1"
+      ],
+      "outComing": [
+        "Par9"
+      ]
+    },
+    {
+      "id": "Par9",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE8"
+      ],
+      "outComing": [
+        "G2",
+        "G3"
+      ]
+    },
+    {
+      "id": "G2",
+      "name": "G2",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Par9"
+      ],
+      "outComing": [
+        "EP19",
+        "XORCLOSE16"
+      ]
+    },
+    {
+      "id": "EP19",
+      "name": "Evidence_Production",
+      "type": "TASK",
+      "branch": "0.0.1.1.1.2.",
+      "inComing": [
+        "G2"
+      ],
+      "outComing": [
+        "XORCLOSE16"
+      ]
+    },
+    {
+      "id": "G3",
+      "name": "G3",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Par9"
+      ],
+      "outComing": [
+        "CMD24",
+        "XORCLOSE17"
+      ]
+    },
+    {
+      "id": "CMD24",
+      "name": "Case_Management_Decision",
+      "type": "TASK",
+      "branch": "0.0.1.2.1.2.",
+      "inComing": [
+        "G3"
+      ],
+      "outComing": [
+        "XORCLOSE17"
+      ]
+    },
+    {
+      "id": "XORCLOSE16",
+      "name": "XORCLOSE16",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.1.1.1.",
+      "inComing": [
+        "EP19",
+        "G2"
+      ],
+      "outComing": [
+        "Par18"
+      ]
+    },
+    {
+      "id": "XORCLOSE17",
+      "name": "XORCLOSE17",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.2.1.1.",
+      "inComing": [
+        "CMD24",
+        "G3"
+      ],
+      "outComing": [
+        "PARCLOSE22"
+      ]
+    },
+    {
+      "id": "Par18",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "XORCLOSE16"
+      ],
+      "outComing": [
+        "NFEP29",
+        "CA17"
+      ]
+    },
+    {
+      "id": "NFEP29",
+      "name": "Notice_for_Evidence_Production",
+      "type": "TASK",
+      "branch": "0.0.1.1.2.1.",
+      "inComing": [
+        "Par18"
+      ],
+      "outComing": [
+        "PARCLOSE21"
+      ]
+    },
+    {
+      "id": "CA17",
+      "name": "Closing_Arguments",
+      "type": "TASK",
+      "branch": "0.0.1.1.2.2.",
+      "inComing": [
+        "Par18"
+      ],
+      "outComing": [
+        "PARCLOSE21"
+      ]
+    },
+    {
+      "id": "PARCLOSE21",
+      "name": "PARCLOSE21",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.2.2.",
+      "inComing": [
+        "CA17",
+        "NFEP29"
+      ],
+      "outComing": [
+        "PARCLOSE22"
+      ]
+    },
+    {
+      "id": "PARCLOSE22",
+      "name": "PARCLOSE22",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "PARCLOSE21",
+        "XORCLOSE17"
+      ],
+      "outComing": [
+        "J8"
+      ]
+    },
+    {
+      "id": "J8",
+      "name": "Judgment",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "PARCLOSE22"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.",
+      "inComing": [
+        "J8"
+      ],
+      "outComing": []
+    }
+  ]
+}

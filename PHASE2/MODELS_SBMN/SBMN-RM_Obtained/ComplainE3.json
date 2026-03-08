@@ -1,0 +1,144 @@
+{
+  "nomeProcesso": "Complaint Handling Process",
+  "Atividades": [
+    { "tipo": "Tarefa", "nome": "Register_call", "id": "RC13" },
+    { "tipo": "Tarefa", "nome": "Write_down_complaint_form_AZ2", "id": "WDCFA29" },
+    { "tipo": "Tarefa", "nome": "Register_letter_receipt_date", "id": "RLRD28" },
+    { "tipo": "Tarefa", "nome": "Refer_customer", "id": "RC14" },
+    { "tipo": "Tarefa", "nome": "Analyze_complaint", "id": "AC17" },
+    { "tipo": "Tarefa", "nome": "Refer_customer_externally_form_B4", "id": "RCEFB433" },
+    { "tipo": "Tarefa", "nome": "Refer_customer_internally_form_B2", "id": "RCIFB233" },
+    { "tipo": "Tarefa", "nome": "Archive_complaint", "id": "AC17" },
+    { "tipo": "Tarefa", "nome": "Contact_client", "id": "CC14" },
+    { "tipo": "Tarefa", "nome": "Archive_internal_complaint", "id": "AIC26" },
+    { "tipo": "Tarefa", "nome": "Put_complaint_on_incident_agenda", "id": "PCOIA32" },
+    { "tipo": "Tarefa", "nome": "Confirm_complaint_to_external_party", "id": "CCTEP35" },
+    { "tipo": "Tarefa", "nome": "Archive_external_complaint", "id": "AEC26" },
+    { "tipo": "Tarefa", "nome": "Follow_up_on_complaint", "id": "FUOC22" },
+    { "tipo": "Tarefa", "nome": "Inform_complainant", "id": "IC18" }
+  ],
+  "Situacoes": [
+    {
+      "operador": "XOR",
+      "esquerda": [{ "id": "RC13" }],
+      "direita": [{ "id": "WDCFA29" }]
+    },
+    {
+      "operador": "XOR",
+      "esquerda": [{ "id": "RC13" }],
+      "direita": [{ "id": "RLRD28" }]
+    },
+    {
+      "operador": "XOR",
+      "esquerda": [{ "id": "WDCFA29" }],
+      "direita": [{ "id": "RLRD28" }]
+    },
+
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "RC14" }],
+      "direita": [{ "id": "RC13" }]
+    },
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "AC17" }],
+      "direita": [{ "id": "RC13" }]
+    },
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "RC14" }],
+      "direita": [{ "id": "WDCFA29" }]
+    },
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "AC17" }],
+      "direita": [{ "id": "WDCFA29" }]
+    },
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "RC14" }],
+      "direita": [{ "id": "RLRD28" }]
+    },
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "AC17" }],
+      "direita": [{ "id": "RLRD28" }]
+    },
+
+    {
+      "operador": "REQ",
+      "esquerda": [{ "id": "RCEFB433" }],
+      "direita": [{ "id": "RC14" }]
+    },
+    {
+      "operador": "REQ",
+      "esquerda": [{ "id": "RCIFB233" }],
+      "direita": [{ "id": "RC14" }]
+    },
+    {
+      "operador": "XOR",
+      "esquerda": [{ "id": "RCEFB433" }],
+      "direita": [{ "id": "RCIFB233" }]
+    },
+
+    {
+      "operador": "DEP",
+      "esquerda": [{ "id": "AC17" }],
+      "direita": [{ "id": "AC17" }]
+    },
+    {
+      "operador": "DEP",
+      "esquerda": [{ "id": "CC14" }],
+      "direita": [{ "id": "AC17" }]
+    },
+
+    {
+      "operador": "DEP",
+      "esquerda": [{ "id": "AIC26" }],
+      "direita": [{ "id": "RCIFB233" }]
+    },
+    {
+      "operador": "DEP",
+      "esquerda": [{ "id": "PCOIA32" }],
+      "direita": [{ "id": "RCIFB233" }]
+    },
+
+    {
+      "operador": "DEP",
+      "esquerda": [{ "id": "CCTEP35" }],
+      "direita": [{ "id": "RCEFB433" }]
+    },
+    {
+      "operador": "DEP",
+      "esquerda": [{ "id": "AEC26" }],
+      "direita": [{ "id": "RCEFB433" }]
+    },
+
+    {
+      "operador": "REQ",
+      "esquerda": [{ "id": "FUOC22" }],
+      "direita": [{ "id": "CC14" }]
+    },
+
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "IC18" }],
+      "direita": [{ "id": "AIC26" }]
+    },
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "IC18" }],
+      "direita": [{ "id": "PCOIA32" }]
+    },
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "IC18" }],
+      "direita": [{ "id": "CCTEP35" }]
+    },
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "IC18" }],
+      "direita": [{ "id": "AEC26" }]
+    }
+  ]
+}

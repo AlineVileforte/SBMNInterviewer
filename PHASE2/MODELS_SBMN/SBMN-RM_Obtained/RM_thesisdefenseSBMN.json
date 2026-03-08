@@ -1,0 +1,51 @@
+{
+  "nomeProcesso": "Defense Request Process",
+  "Atividades": [
+    { "tipo": "Tarefa", "nome": "Review_Defense_Data", "id": "RDD19" },
+    { "tipo": "Tarefa", "nome": "Advisor_Request_for_Defense", "id": "ARFD26" },
+    { "tipo": "Tarefa", "nome": "Ask_Student_Confirmation", "id": "ASC24" },
+    { "tipo": "Tarefa", "nome": "Student_Response_Received", "id": "SRR25" },
+    { "tipo": "Tarefa", "nome": "Student_Defence_Rejection", "id": "SDR25" },
+    { "tipo": "Tarefa", "nome": "Defense_Confirmed", "id": "DC17" },
+    { "tipo": "Tarefa", "nome": "Coordination_Approval_Requested", "id": "CAR31" },
+    { "tipo": "Tarefa", "nome": "Coordination_Response", "id": "CR21" },
+    { "tipo": "Tarefa", "nome": "Defense_Authorized", "id": "DA18" },
+    { "tipo": "Tarefa", "nome": "Justification_for_Denied_Defense_Reported", "id": "JFDDR41" },
+    { "tipo": "Tarefa", "nome": "Send_Deny_of_Defense_to_Advisor", "id": "SDODTA31" },
+    { "tipo": "Tarefa", "nome": "Generate_Documents", "id": "GD18" },
+    { "tipo": "Tarefa", "nome": "Dissertation_Upload_Requested", "id": "DUR29" },
+    { "tipo": "Tarefa", "nome": "Thesis_uploaded", "id": "TU15" },
+    { "tipo": "Tarefa", "nome": "Thesis_upload_Deadline_Expired", "id": "TUDE30" },
+    { "tipo": "Tarefa", "nome": "Send_Thesis_to_Committee", "id": "STTC24" },
+    { "tipo": "Tarefa", "nome": "Notify_Committee", "id": "NC16" }
+  ],
+  "Situacoes": [
+    { "operador": "DEP", "esquerda": [{ "id": "RDD19" }], "direita": [{ "id": "ARFD26" }] },
+    { "operador": "DEP", "esquerda": [{ "id": "ASC24" }], "direita": [{ "id": "RDD19" }] },
+    { "operador": "DEP", "esquerda": [{ "id": "SRR25" }], "direita": [{ "id": "ASC24" }] },
+
+    { "operador": "REQ", "esquerda": [{ "id": "SDR25" }], "direita": [{ "id": "SRR25" }] },
+    { "operador": "REQ", "esquerda": [{ "id": "DC17" }], "direita": [{ "id": "SRR25" }] },
+
+    { "operador": "DEP", "esquerda": [{ "id": "CAR31" }], "direita": [{ "id": "DC17" }] },
+    { "operador": "DEP", "esquerda": [{ "id": "CR21" }], "direita": [{ "id": "CAR31" }] },
+
+    { "operador": "REQ", "esquerda": [{ "id": "DA18" }], "direita": [{ "id": "CR21" }] },
+    { "operador": "REQ", "esquerda": [{ "id": "JFDDR41" }], "direita": [{ "id": "CR21" }] },
+
+    { "operador": "DEP", "esquerda": [{ "id": "SDODTA31" }], "direita": [{ "id": "JFDDR41" }] },
+
+    { "operador": "DEP", "esquerda": [{ "id": "GD18" }], "direita": [{ "id": "DA18" }] },
+    { "operador": "DEP", "esquerda": [{ "id": "DUR29" }], "direita": [{ "id": "DA18" }] },
+
+    { "operador": "REQ", "esquerda": [{ "id": "TU15" }], "direita": [{ "id": "DUR29" }] },
+    { "operador": "REQ", "esquerda": [{ "id": "TUDE30" }], "direita": [{ "id": "DUR29" }] },
+
+    { "operador": "DEP", "esquerda": [{ "id": "STTC24" }], "direita": [{ "id": "TU15" }] },
+
+    { "operador": "DEP", "esquerda": [{ "id": "NC16" }], "direita": [{ "id": "DA18" }] },
+
+    { "operador": "JMP", "esquerda": [{ "id": "TUDE30" }], "direita": [{ "id": "DUR29" }] },
+    { "operador": "JMP", "esquerda": [{ "id": "SDR25" }], "direita": [{ "id": "RDD19" }] }
+  ]
+}

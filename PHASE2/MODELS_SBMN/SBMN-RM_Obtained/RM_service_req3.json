@@ -1,0 +1,43 @@
+{
+  "nomeProcesso": "Service Request Process",
+  "Atividades": [
+    { "tipo": "Tarefa", "nome": "Request_Service", "id": "RS15" },
+    { "tipo": "Tarefa", "nome": "Service_Done", "id": "SD12" },
+    { "tipo": "Tarefa", "nome": "Assess_Service", "id": "AS14" },
+    { "tipo": "Tarefa", "nome": "Pay", "id": "P3" },
+    { "tipo": "Tarefa", "nome": "Request_New_Service", "id": "RNS19" },
+    { "tipo": "Tarefa", "nome": "Finish", "id": "F6" }
+  ],
+  "Situacoes": [
+    {
+      "operador": "DEP",
+      "esquerda": [{ "id": "SD12" }],
+      "direita": [{ "id": "RS15" }]
+    },
+    {
+      "operador": "DEP",
+      "esquerda": [{ "id": "AS14" }],
+      "direita": [{ "id": "SD12" }]
+    },
+    {
+      "operador": "REQ",
+      "esquerda": [{ "id": "P3" }],
+      "direita": [{ "id": "SD12" }]
+    },
+    {
+      "operador": "REQ",
+      "esquerda": [{ "id": "RNS19" }],
+      "direita": [{ "id": "SD12" }]
+    },
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "F6" }],
+      "direita": [{ "id": "P3" }]
+    },
+    {
+      "operador": "JMP",
+      "esquerda": [{ "id": "RNS19" }],
+      "direita": [{ "id": "RS15" }]
+    }
+  ]
+}

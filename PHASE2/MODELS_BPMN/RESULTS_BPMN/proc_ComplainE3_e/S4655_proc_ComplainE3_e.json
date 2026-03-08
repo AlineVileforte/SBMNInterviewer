@@ -1,0 +1,333 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "RC13",
+        "G1"
+      ]
+    },
+    {
+      "id": "RC13",
+      "name": "Register_call",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE6"
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "G1",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "WDCFA29",
+        "RLRD28"
+      ]
+    },
+    {
+      "id": "WDCFA29",
+      "name": "Write_down_complaint_form_AZ2",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.1.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "XORCLOSE5"
+      ]
+    },
+    {
+      "id": "RLRD28",
+      "name": "Register_letter_receipt_date",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.2.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "XORCLOSE5"
+      ]
+    },
+    {
+      "id": "XORCLOSE5",
+      "name": "XORCLOSE5",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.0.1.",
+      "inComing": [
+        "WDCFA29",
+        "RLRD28"
+      ],
+      "outComing": [
+        "XORCLOSE6"
+      ]
+    },
+    {
+      "id": "XORCLOSE6",
+      "name": "XORCLOSE6",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "RC13",
+        "XORCLOSE5"
+      ],
+      "outComing": [
+        "AC17"
+      ]
+    },
+    {
+      "id": "AC17",
+      "name": "Analyze_complaint",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE6"
+      ],
+      "outComing": [
+        "AC_18"
+      ]
+    },
+    {
+      "id": "AC_18",
+      "name": "Archive_complaint",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "AC17"
+      ],
+      "outComing": [
+        "RC14"
+      ]
+    },
+    {
+      "id": "RC14",
+      "name": "Refer_customer",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "AC_18"
+      ],
+      "outComing": [
+        "CC14"
+      ]
+    },
+    {
+      "id": "CC14",
+      "name": "Contact_client",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "RC14"
+      ],
+      "outComing": [
+        "G3"
+      ]
+    },
+    {
+      "id": "G3",
+      "name": "G3",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "CC14"
+      ],
+      "outComing": [
+        "RCEFB433",
+        "RCIFB233"
+      ]
+    },
+    {
+      "id": "RCEFB433",
+      "name": "Refer_customer_externally_form_B4",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G3"
+      ],
+      "outComing": [
+        "G5"
+      ]
+    },
+    {
+      "id": "RCIFB233",
+      "name": "Refer_customer_internally_form_B2",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G3"
+      ],
+      "outComing": [
+        "PCOIA32"
+      ]
+    },
+    {
+      "id": "G5",
+      "name": "G5",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "RCEFB433"
+      ],
+      "outComing": [
+        "CCTEP35",
+        "AEC26"
+      ]
+    },
+    {
+      "id": "CCTEP35",
+      "name": "Confirm_complaint_to_external_party",
+      "type": "TASK",
+      "branch": "0.0.0.1.0.1.",
+      "inComing": [
+        "G5"
+      ],
+      "outComing": [
+        "XORCLOSE18"
+      ]
+    },
+    {
+      "id": "AEC26",
+      "name": "Archive_external_complaint",
+      "type": "TASK",
+      "branch": "0.0.0.1.0.2.",
+      "inComing": [
+        "G5"
+      ],
+      "outComing": [
+        "XORCLOSE18"
+      ]
+    },
+    {
+      "id": "PCOIA32",
+      "name": "Put_complaint_on_incident_agenda",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "RCIFB233"
+      ],
+      "outComing": [
+        "AIC26"
+      ]
+    },
+    {
+      "id": "XORCLOSE18",
+      "name": "XORCLOSE18",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.0.1.",
+      "inComing": [
+        "CCTEP35",
+        "AEC26"
+      ],
+      "outComing": [
+        "XORCLOSE20"
+      ]
+    },
+    {
+      "id": "AIC26",
+      "name": "Archive_internal_complaint",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "PCOIA32"
+      ],
+      "outComing": [
+        "XORCLOSE20"
+      ]
+    },
+    {
+      "id": "XORCLOSE20",
+      "name": "XORCLOSE20",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "XORCLOSE18",
+        "AIC26"
+      ],
+      "outComing": [
+        "IC18"
+      ]
+    },
+    {
+      "id": "IC18",
+      "name": "Inform_complainant",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE20"
+      ],
+      "outComing": [
+        "G7"
+      ]
+    },
+    {
+      "id": "G7",
+      "name": "G7",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "IC18"
+      ],
+      "outComing": [
+        "FUOC22",
+        "XORCLOSE25"
+      ]
+    },
+    {
+      "id": "FUOC22",
+      "name": "Follow_up_on_complaint",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G7"
+      ],
+      "outComing": [
+        "XORCLOSE25"
+      ]
+    },
+    {
+      "id": "XORCLOSE25",
+      "name": "XORCLOSE25",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "FUOC22",
+        "G7"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "XORCLOSE25"
+      ],
+      "outComing": []
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "Atividades": [
+    { "tipo": "Tarefa", "nome": "Initial_Petition", "id": "IP15" },
+    { "tipo": "Tarefa", "nome": "Statement_of_Defense", "id": "SOD20" },
+    { "tipo": "Tarefa", "nome": "Reply_to_the_Defense", "id": "RTTD20" },
+    { "tipo": "Tarefa", "nome": "Case_Management_Decision", "id": "CMD24" },
+    { "tipo": "Tarefa", "nome": "Notice_for_Evidence_Production", "id": "NFEP29" },
+    { "tipo": "Tarefa", "nome": "Evidence_Production", "id": "EP19" },
+    { "tipo": "Tarefa", "nome": "Closing_Arguments", "id": "CA17" },
+    { "tipo": "Tarefa", "nome": "Judgment", "id": "J8" }
+  ],
+  "Situacoes": [
+    {
+      "operador": "REQ",
+      "esquerda": [{ "id": "SOD20" }],
+      "direita": [{ "id": "IP15" }]
+    },
+    {
+      "operador": "DEP",
+      "esquerda": [{ "id": "RTTD20" }],
+      "direita": [{ "id": "SOD20" }]
+    },
+    {
+      "operador": "DEP",
+      "esquerda": [{ "id": "CMD24" }],
+      "direita": [{ "id": "RTTD20" }]
+    },
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "NFEP29" }],
+      "direita": [{ "id": "CMD24" }]
+    },
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "EP19" }],
+      "direita": [{ "id": "RTTD20" }]
+    },
+    {
+      "operador": "DEPC",
+      "esquerda": [{ "id": "CA17" }],
+      "direita": [{ "id": "EP19" }]
+    },
+    {
+      "operador": "DEP",
+      "esquerda": [{ "id": "J8" }],
+      "direita": [{ "id": "CA17" }]
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "XOR_JMPBB_RNS19_RS15"
+      ]
+    },
+    {
+      "id": "RS15",
+      "name": "Request_Service",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPBB_RNS19_RS15"
+      ],
+      "outComing": [
+        "SD12"
+      ]
+    },
+    {
+      "id": "SD12",
+      "name": "Service_Done",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "RS15"
+      ],
+      "outComing": [
+        "AS14"
+      ]
+    },
+    {
+      "id": "AS14",
+      "name": "Assess_Service",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "SD12"
+      ],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "AS14"
+      ],
+      "outComing": [
+        "P3",
+        "XORCLOSE6"
+      ]
+    },
+    {
+      "id": "P3",
+      "name": "Pay",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE6"
+      ]
+    },
+    {
+      "id": "XORCLOSE6",
+      "name": "XORCLOSE6",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "P3",
+        "G0"
+      ],
+      "outComing": [
+        "G1"
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "G1",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE6"
+      ],
+      "outComing": [
+        "F6",
+        "RNS19"
+      ]
+    },
+    {
+      "id": "RNS19",
+      "name": "Request_New_Service",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "XOR_JMPAA_RNS19_RS15"
+      ]
+    },
+    {
+      "id": "F6",
+      "name": "Finish",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "XORCLOSE11"
+      ]
+    },
+    {
+      "id": "XORCLOSE11",
+      "name": "XORCLOSE11",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "F6",
+        "XOR_JMPAA_RNS19_RS15"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "XORCLOSE11"
+      ],
+      "outComing": []
+    },
+    {
+      "id": "XOR_JMPAA_RNS19_RS15",
+      "name": "XOR_JMPAA_Request_New_Service",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "RNS19"
+      ],
+      "outComing": [
+        "XORCLOSE11",
+        "XOR_JMPBB_RNS19_RS15"
+      ]
+    },
+    {
+      "id": "XOR_JMPBB_RNS19_RS15",
+      "name": "XOR_JMPBB_Request_Service",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init",
+        "XOR_JMPAA_RNS19_RS15"
+      ],
+      "outComing": [
+        "RS15"
+      ]
+    }
+  ]
+}

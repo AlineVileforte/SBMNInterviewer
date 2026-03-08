@@ -1,0 +1,422 @@
+<ns0:definitions xmlns:ns0="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:ns1="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:ns2="http://www.omg.org/spec/DD/20100524/DC" xmlns:ns3="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_001" targetNamespace="http://bpmn.io/schema/bpmn">
+  <ns0:process id="Process_001" isExecutable="false">
+    <ns0:startEvent id="Default_init">
+      <ns0:outgoing>Flow_Default_init_G0</ns0:outgoing>
+    </ns0:startEvent>
+    <ns0:exclusiveGateway id="G0">
+      <ns0:incoming>Flow_Default_init_G0</ns0:incoming>
+      <ns0:outgoing>Flow_G0_RC13</ns0:outgoing>
+      <ns0:outgoing>Flow_G0_G1</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:task id="RC13" name="Register_call">
+      <ns0:incoming>Flow_G0_RC13</ns0:incoming>
+      <ns0:outgoing>Flow_RC13_XORCLOSE6</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="G1">
+      <ns0:incoming>Flow_G0_G1</ns0:incoming>
+      <ns0:outgoing>Flow_G1_WDCFA29</ns0:outgoing>
+      <ns0:outgoing>Flow_G1_RLRD28</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:task id="WDCFA29" name="Write_down_complaint_form_AZ2">
+      <ns0:incoming>Flow_G1_WDCFA29</ns0:incoming>
+      <ns0:outgoing>Flow_WDCFA29_XORCLOSE5</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="RLRD28" name="Register_letter_receipt_date">
+      <ns0:incoming>Flow_G1_RLRD28</ns0:incoming>
+      <ns0:outgoing>Flow_RLRD28_XORCLOSE5</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="XORCLOSE5">
+      <ns0:incoming>Flow_WDCFA29_XORCLOSE5</ns0:incoming>
+      <ns0:incoming>Flow_RLRD28_XORCLOSE5</ns0:incoming>
+      <ns0:outgoing>Flow_XORCLOSE5_XORCLOSE6</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:exclusiveGateway id="XORCLOSE6">
+      <ns0:incoming>Flow_RC13_XORCLOSE6</ns0:incoming>
+      <ns0:incoming>Flow_XORCLOSE5_XORCLOSE6</ns0:incoming>
+      <ns0:outgoing>Flow_XORCLOSE6_AC17</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:task id="AC17" name="Analyze_complaint">
+      <ns0:incoming>Flow_XORCLOSE6_AC17</ns0:incoming>
+      <ns0:outgoing>Flow_AC17_RC14</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="RC14" name="Refer_customer">
+      <ns0:incoming>Flow_AC17_RC14</ns0:incoming>
+      <ns0:outgoing>Flow_RC14_AC_18</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="AC_18" name="Archive_complaint">
+      <ns0:incoming>Flow_RC14_AC_18</ns0:incoming>
+      <ns0:outgoing>Flow_AC_18_G3</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="G3">
+      <ns0:incoming>Flow_AC_18_G3</ns0:incoming>
+      <ns0:outgoing>Flow_G3_RCEFB433</ns0:outgoing>
+      <ns0:outgoing>Flow_G3_RCIFB233</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:task id="RCEFB433" name="Refer_customer_externally_form_B4">
+      <ns0:incoming>Flow_G3_RCEFB433</ns0:incoming>
+      <ns0:outgoing>Flow_RCEFB433_G4</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="RCIFB233" name="Refer_customer_internally_form_B2">
+      <ns0:incoming>Flow_G3_RCIFB233</ns0:incoming>
+      <ns0:outgoing>Flow_RCIFB233_Par16</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="G4">
+      <ns0:incoming>Flow_RCEFB433_G4</ns0:incoming>
+      <ns0:outgoing>Flow_G4_CCTEP35</ns0:outgoing>
+      <ns0:outgoing>Flow_G4_AEC26</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:task id="CCTEP35" name="Confirm_complaint_to_external_party">
+      <ns0:incoming>Flow_G4_CCTEP35</ns0:incoming>
+      <ns0:outgoing>Flow_CCTEP35_XORCLOSE19</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="AEC26" name="Archive_external_complaint">
+      <ns0:incoming>Flow_G4_AEC26</ns0:incoming>
+      <ns0:outgoing>Flow_AEC26_XORCLOSE19</ns0:outgoing>
+    </ns0:task>
+    <ns0:parallelGateway id="Par16">
+      <ns0:incoming>Flow_RCIFB233_Par16</ns0:incoming>
+      <ns0:outgoing>Flow_Par16_AIC26</ns0:outgoing>
+      <ns0:outgoing>Flow_Par16_PCOIA32</ns0:outgoing>
+    </ns0:parallelGateway>
+    <ns0:task id="AIC26" name="Archive_internal_complaint">
+      <ns0:incoming>Flow_Par16_AIC26</ns0:incoming>
+      <ns0:outgoing>Flow_AIC26_PARCLOSE20</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="PCOIA32" name="Put_complaint_on_incident_agenda">
+      <ns0:incoming>Flow_Par16_PCOIA32</ns0:incoming>
+      <ns0:outgoing>Flow_PCOIA32_PARCLOSE20</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="XORCLOSE19">
+      <ns0:incoming>Flow_CCTEP35_XORCLOSE19</ns0:incoming>
+      <ns0:incoming>Flow_AEC26_XORCLOSE19</ns0:incoming>
+      <ns0:outgoing>Flow_XORCLOSE19_XORCLOSE21</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:parallelGateway id="PARCLOSE20">
+      <ns0:incoming>Flow_AIC26_PARCLOSE20</ns0:incoming>
+      <ns0:incoming>Flow_PCOIA32_PARCLOSE20</ns0:incoming>
+      <ns0:outgoing>Flow_PARCLOSE20_XORCLOSE21</ns0:outgoing>
+    </ns0:parallelGateway>
+    <ns0:exclusiveGateway id="XORCLOSE21">
+      <ns0:incoming>Flow_XORCLOSE19_XORCLOSE21</ns0:incoming>
+      <ns0:incoming>Flow_PARCLOSE20_XORCLOSE21</ns0:incoming>
+      <ns0:outgoing>Flow_XORCLOSE21_CC14</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:task id="CC14" name="Contact_client">
+      <ns0:incoming>Flow_XORCLOSE21_CC14</ns0:incoming>
+      <ns0:outgoing>Flow_CC14_Par23</ns0:outgoing>
+    </ns0:task>
+    <ns0:parallelGateway id="Par23">
+      <ns0:incoming>Flow_CC14_Par23</ns0:incoming>
+      <ns0:outgoing>Flow_Par23_IC18</ns0:outgoing>
+      <ns0:outgoing>Flow_Par23_G5</ns0:outgoing>
+    </ns0:parallelGateway>
+    <ns0:task id="IC18" name="Inform_complainant">
+      <ns0:incoming>Flow_Par23_IC18</ns0:incoming>
+      <ns0:outgoing>Flow_IC18_PARCLOSE29</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="G5">
+      <ns0:incoming>Flow_Par23_G5</ns0:incoming>
+      <ns0:outgoing>Flow_G5_FUOC22</ns0:outgoing>
+      <ns0:outgoing>Flow_G5_XORCLOSE28</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:task id="FUOC22" name="Follow_up_on_complaint">
+      <ns0:incoming>Flow_G5_FUOC22</ns0:incoming>
+      <ns0:outgoing>Flow_FUOC22_XORCLOSE28</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="XORCLOSE28">
+      <ns0:incoming>Flow_FUOC22_XORCLOSE28</ns0:incoming>
+      <ns0:incoming>Flow_G5_XORCLOSE28</ns0:incoming>
+      <ns0:outgoing>Flow_XORCLOSE28_PARCLOSE29</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:parallelGateway id="PARCLOSE29">
+      <ns0:incoming>Flow_IC18_PARCLOSE29</ns0:incoming>
+      <ns0:incoming>Flow_XORCLOSE28_PARCLOSE29</ns0:incoming>
+      <ns0:outgoing>Flow_PARCLOSE29_END</ns0:outgoing>
+    </ns0:parallelGateway>
+    <ns0:endEvent id="END">
+      <ns0:incoming>Flow_PARCLOSE29_END</ns0:incoming>
+    </ns0:endEvent>
+    <ns0:sequenceFlow id="Flow_Default_init_G0" sourceRef="Default_init" targetRef="G0" />
+    <ns0:sequenceFlow id="Flow_G0_RC13" sourceRef="G0" targetRef="RC13" />
+    <ns0:sequenceFlow id="Flow_G0_G1" sourceRef="G0" targetRef="G1" />
+    <ns0:sequenceFlow id="Flow_RC13_XORCLOSE6" sourceRef="RC13" targetRef="XORCLOSE6" />
+    <ns0:sequenceFlow id="Flow_G1_WDCFA29" sourceRef="G1" targetRef="WDCFA29" />
+    <ns0:sequenceFlow id="Flow_G1_RLRD28" sourceRef="G1" targetRef="RLRD28" />
+    <ns0:sequenceFlow id="Flow_WDCFA29_XORCLOSE5" sourceRef="WDCFA29" targetRef="XORCLOSE5" />
+    <ns0:sequenceFlow id="Flow_RLRD28_XORCLOSE5" sourceRef="RLRD28" targetRef="XORCLOSE5" />
+    <ns0:sequenceFlow id="Flow_XORCLOSE5_XORCLOSE6" sourceRef="XORCLOSE5" targetRef="XORCLOSE6" />
+    <ns0:sequenceFlow id="Flow_XORCLOSE6_AC17" sourceRef="XORCLOSE6" targetRef="AC17" />
+    <ns0:sequenceFlow id="Flow_AC17_RC14" sourceRef="AC17" targetRef="RC14" />
+    <ns0:sequenceFlow id="Flow_RC14_AC_18" sourceRef="RC14" targetRef="AC_18" />
+    <ns0:sequenceFlow id="Flow_AC_18_G3" sourceRef="AC_18" targetRef="G3" />
+    <ns0:sequenceFlow id="Flow_G3_RCEFB433" sourceRef="G3" targetRef="RCEFB433" />
+    <ns0:sequenceFlow id="Flow_G3_RCIFB233" sourceRef="G3" targetRef="RCIFB233" />
+    <ns0:sequenceFlow id="Flow_RCEFB433_G4" sourceRef="RCEFB433" targetRef="G4" />
+    <ns0:sequenceFlow id="Flow_RCIFB233_Par16" sourceRef="RCIFB233" targetRef="Par16" />
+    <ns0:sequenceFlow id="Flow_G4_CCTEP35" sourceRef="G4" targetRef="CCTEP35" />
+    <ns0:sequenceFlow id="Flow_G4_AEC26" sourceRef="G4" targetRef="AEC26" />
+    <ns0:sequenceFlow id="Flow_CCTEP35_XORCLOSE19" sourceRef="CCTEP35" targetRef="XORCLOSE19" />
+    <ns0:sequenceFlow id="Flow_AEC26_XORCLOSE19" sourceRef="AEC26" targetRef="XORCLOSE19" />
+    <ns0:sequenceFlow id="Flow_Par16_AIC26" sourceRef="Par16" targetRef="AIC26" />
+    <ns0:sequenceFlow id="Flow_Par16_PCOIA32" sourceRef="Par16" targetRef="PCOIA32" />
+    <ns0:sequenceFlow id="Flow_AIC26_PARCLOSE20" sourceRef="AIC26" targetRef="PARCLOSE20" />
+    <ns0:sequenceFlow id="Flow_PCOIA32_PARCLOSE20" sourceRef="PCOIA32" targetRef="PARCLOSE20" />
+    <ns0:sequenceFlow id="Flow_XORCLOSE19_XORCLOSE21" sourceRef="XORCLOSE19" targetRef="XORCLOSE21" />
+    <ns0:sequenceFlow id="Flow_PARCLOSE20_XORCLOSE21" sourceRef="PARCLOSE20" targetRef="XORCLOSE21" />
+    <ns0:sequenceFlow id="Flow_XORCLOSE21_CC14" sourceRef="XORCLOSE21" targetRef="CC14" />
+    <ns0:sequenceFlow id="Flow_CC14_Par23" sourceRef="CC14" targetRef="Par23" />
+    <ns0:sequenceFlow id="Flow_Par23_IC18" sourceRef="Par23" targetRef="IC18" />
+    <ns0:sequenceFlow id="Flow_Par23_G5" sourceRef="Par23" targetRef="G5" />
+    <ns0:sequenceFlow id="Flow_IC18_PARCLOSE29" sourceRef="IC18" targetRef="PARCLOSE29" />
+    <ns0:sequenceFlow id="Flow_G5_FUOC22" sourceRef="G5" targetRef="FUOC22" />
+    <ns0:sequenceFlow id="Flow_G5_XORCLOSE28" sourceRef="G5" targetRef="XORCLOSE28" />
+    <ns0:sequenceFlow id="Flow_FUOC22_XORCLOSE28" sourceRef="FUOC22" targetRef="XORCLOSE28" />
+    <ns0:sequenceFlow id="Flow_XORCLOSE28_PARCLOSE29" sourceRef="XORCLOSE28" targetRef="PARCLOSE29" />
+    <ns0:sequenceFlow id="Flow_PARCLOSE29_END" sourceRef="PARCLOSE29" targetRef="END" />
+  </ns0:process>
+  <ns1:BPMNDiagram id="BPMNDiagram_1">
+    <ns1:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_001">
+      <ns1:BPMNShape id="_BPMNShape_Default_init" bpmnElement="Default_init">
+        <ns2:Bounds x="100" y="100" width="36" height="36" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_G0" bpmnElement="G0">
+        <ns2:Bounds x="250" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_RC13" bpmnElement="RC13">
+        <ns2:Bounds x="400" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_G1" bpmnElement="G1">
+        <ns2:Bounds x="550" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_WDCFA29" bpmnElement="WDCFA29">
+        <ns2:Bounds x="700" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_RLRD28" bpmnElement="RLRD28">
+        <ns2:Bounds x="850" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_XORCLOSE5" bpmnElement="XORCLOSE5">
+        <ns2:Bounds x="1000" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_XORCLOSE6" bpmnElement="XORCLOSE6">
+        <ns2:Bounds x="1150" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_AC17" bpmnElement="AC17">
+        <ns2:Bounds x="1300" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_RC14" bpmnElement="RC14">
+        <ns2:Bounds x="1450" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_AC_18" bpmnElement="AC_18">
+        <ns2:Bounds x="1600" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_G3" bpmnElement="G3">
+        <ns2:Bounds x="1750" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_RCEFB433" bpmnElement="RCEFB433">
+        <ns2:Bounds x="1900" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_RCIFB233" bpmnElement="RCIFB233">
+        <ns2:Bounds x="2050" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_G4" bpmnElement="G4">
+        <ns2:Bounds x="2200" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_CCTEP35" bpmnElement="CCTEP35">
+        <ns2:Bounds x="2350" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_AEC26" bpmnElement="AEC26">
+        <ns2:Bounds x="2500" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Par16" bpmnElement="Par16">
+        <ns2:Bounds x="2650" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_AIC26" bpmnElement="AIC26">
+        <ns2:Bounds x="2800" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_PCOIA32" bpmnElement="PCOIA32">
+        <ns2:Bounds x="2950" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_XORCLOSE19" bpmnElement="XORCLOSE19">
+        <ns2:Bounds x="3100" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_PARCLOSE20" bpmnElement="PARCLOSE20">
+        <ns2:Bounds x="3250" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_XORCLOSE21" bpmnElement="XORCLOSE21">
+        <ns2:Bounds x="3400" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_CC14" bpmnElement="CC14">
+        <ns2:Bounds x="3550" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Par23" bpmnElement="Par23">
+        <ns2:Bounds x="3700" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_IC18" bpmnElement="IC18">
+        <ns2:Bounds x="3850" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_G5" bpmnElement="G5">
+        <ns2:Bounds x="4000" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_FUOC22" bpmnElement="FUOC22">
+        <ns2:Bounds x="4150" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_XORCLOSE28" bpmnElement="XORCLOSE28">
+        <ns2:Bounds x="4300" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_PARCLOSE29" bpmnElement="PARCLOSE29">
+        <ns2:Bounds x="4450" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_END" bpmnElement="END">
+        <ns2:Bounds x="4600" y="100" width="36" height="36" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge id="Flow_Default_init_G0_di" bpmnElement="Flow_Default_init_G0">
+        <ns3:waypoint x="136" y="118" />
+        <ns3:waypoint x="250" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G0_RC13_di" bpmnElement="Flow_G0_RC13">
+        <ns3:waypoint x="300" y="125" />
+        <ns3:waypoint x="400" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G0_G1_di" bpmnElement="Flow_G0_G1">
+        <ns3:waypoint x="300" y="125" />
+        <ns3:waypoint x="550" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_RC13_XORCLOSE6_di" bpmnElement="Flow_RC13_XORCLOSE6">
+        <ns3:waypoint x="500" y="140" />
+        <ns3:waypoint x="1150" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G1_WDCFA29_di" bpmnElement="Flow_G1_WDCFA29">
+        <ns3:waypoint x="600" y="125" />
+        <ns3:waypoint x="700" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G1_RLRD28_di" bpmnElement="Flow_G1_RLRD28">
+        <ns3:waypoint x="600" y="125" />
+        <ns3:waypoint x="850" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_WDCFA29_XORCLOSE5_di" bpmnElement="Flow_WDCFA29_XORCLOSE5">
+        <ns3:waypoint x="800" y="140" />
+        <ns3:waypoint x="1000" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_RLRD28_XORCLOSE5_di" bpmnElement="Flow_RLRD28_XORCLOSE5">
+        <ns3:waypoint x="950" y="140" />
+        <ns3:waypoint x="1000" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_XORCLOSE5_XORCLOSE6_di" bpmnElement="Flow_XORCLOSE5_XORCLOSE6">
+        <ns3:waypoint x="1050" y="125" />
+        <ns3:waypoint x="1150" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_XORCLOSE6_AC17_di" bpmnElement="Flow_XORCLOSE6_AC17">
+        <ns3:waypoint x="1200" y="125" />
+        <ns3:waypoint x="1300" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_AC17_RC14_di" bpmnElement="Flow_AC17_RC14">
+        <ns3:waypoint x="1400" y="140" />
+        <ns3:waypoint x="1450" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_RC14_AC_18_di" bpmnElement="Flow_RC14_AC_18">
+        <ns3:waypoint x="1550" y="140" />
+        <ns3:waypoint x="1600" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_AC_18_G3_di" bpmnElement="Flow_AC_18_G3">
+        <ns3:waypoint x="1700" y="140" />
+        <ns3:waypoint x="1750" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G3_RCEFB433_di" bpmnElement="Flow_G3_RCEFB433">
+        <ns3:waypoint x="1800" y="125" />
+        <ns3:waypoint x="1900" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G3_RCIFB233_di" bpmnElement="Flow_G3_RCIFB233">
+        <ns3:waypoint x="1800" y="125" />
+        <ns3:waypoint x="2050" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_RCEFB433_G4_di" bpmnElement="Flow_RCEFB433_G4">
+        <ns3:waypoint x="2000" y="140" />
+        <ns3:waypoint x="2200" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_RCIFB233_Par16_di" bpmnElement="Flow_RCIFB233_Par16">
+        <ns3:waypoint x="2150" y="140" />
+        <ns3:waypoint x="2650" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G4_CCTEP35_di" bpmnElement="Flow_G4_CCTEP35">
+        <ns3:waypoint x="2250" y="125" />
+        <ns3:waypoint x="2350" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G4_AEC26_di" bpmnElement="Flow_G4_AEC26">
+        <ns3:waypoint x="2250" y="125" />
+        <ns3:waypoint x="2500" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_CCTEP35_XORCLOSE19_di" bpmnElement="Flow_CCTEP35_XORCLOSE19">
+        <ns3:waypoint x="2450" y="140" />
+        <ns3:waypoint x="3100" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_AEC26_XORCLOSE19_di" bpmnElement="Flow_AEC26_XORCLOSE19">
+        <ns3:waypoint x="2600" y="140" />
+        <ns3:waypoint x="3100" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Par16_AIC26_di" bpmnElement="Flow_Par16_AIC26">
+        <ns3:waypoint x="2700" y="125" />
+        <ns3:waypoint x="2800" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Par16_PCOIA32_di" bpmnElement="Flow_Par16_PCOIA32">
+        <ns3:waypoint x="2700" y="125" />
+        <ns3:waypoint x="2950" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_AIC26_PARCLOSE20_di" bpmnElement="Flow_AIC26_PARCLOSE20">
+        <ns3:waypoint x="2900" y="140" />
+        <ns3:waypoint x="3250" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_PCOIA32_PARCLOSE20_di" bpmnElement="Flow_PCOIA32_PARCLOSE20">
+        <ns3:waypoint x="3050" y="140" />
+        <ns3:waypoint x="3250" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_XORCLOSE19_XORCLOSE21_di" bpmnElement="Flow_XORCLOSE19_XORCLOSE21">
+        <ns3:waypoint x="3150" y="125" />
+        <ns3:waypoint x="3400" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_PARCLOSE20_XORCLOSE21_di" bpmnElement="Flow_PARCLOSE20_XORCLOSE21">
+        <ns3:waypoint x="3300" y="125" />
+        <ns3:waypoint x="3400" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_XORCLOSE21_CC14_di" bpmnElement="Flow_XORCLOSE21_CC14">
+        <ns3:waypoint x="3450" y="125" />
+        <ns3:waypoint x="3550" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_CC14_Par23_di" bpmnElement="Flow_CC14_Par23">
+        <ns3:waypoint x="3650" y="140" />
+        <ns3:waypoint x="3700" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Par23_IC18_di" bpmnElement="Flow_Par23_IC18">
+        <ns3:waypoint x="3750" y="125" />
+        <ns3:waypoint x="3850" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Par23_G5_di" bpmnElement="Flow_Par23_G5">
+        <ns3:waypoint x="3750" y="125" />
+        <ns3:waypoint x="4000" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_IC18_PARCLOSE29_di" bpmnElement="Flow_IC18_PARCLOSE29">
+        <ns3:waypoint x="3950" y="140" />
+        <ns3:waypoint x="4450" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G5_FUOC22_di" bpmnElement="Flow_G5_FUOC22">
+        <ns3:waypoint x="4050" y="125" />
+        <ns3:waypoint x="4150" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G5_XORCLOSE28_di" bpmnElement="Flow_G5_XORCLOSE28">
+        <ns3:waypoint x="4050" y="125" />
+        <ns3:waypoint x="4300" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_FUOC22_XORCLOSE28_di" bpmnElement="Flow_FUOC22_XORCLOSE28">
+        <ns3:waypoint x="4250" y="140" />
+        <ns3:waypoint x="4300" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_XORCLOSE28_PARCLOSE29_di" bpmnElement="Flow_XORCLOSE28_PARCLOSE29">
+        <ns3:waypoint x="4350" y="125" />
+        <ns3:waypoint x="4450" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_PARCLOSE29_END_di" bpmnElement="Flow_PARCLOSE29_END">
+        <ns3:waypoint x="4500" y="125" />
+        <ns3:waypoint x="4600" y="118" />
+      </ns1:BPMNEdge>
+    </ns1:BPMNPlane>
+  </ns1:BPMNDiagram>
+</ns0:definitions>

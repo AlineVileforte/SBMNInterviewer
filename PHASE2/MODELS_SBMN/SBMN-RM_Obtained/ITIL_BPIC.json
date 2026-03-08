@@ -1,0 +1,27 @@
+{
+   "Atividades": [
+    { "tipo": "Tarefa", "nome": "Open", "id": "O4" },
+    { "tipo": "Tarefa", "nome": "Update", "id": "U6" },
+    { "tipo": "Tarefa", "nome": "Reassignment", "id": "R12" },
+    { "tipo": "Tarefa", "nome": "Operator_Update", "id": "OU15" },
+    { "tipo": "Tarefa", "nome": "Assignment", "id": "A10" },
+    { "tipo": "Tarefa", "nome": "Status_Change", "id": "SC13" },
+    { "tipo": "Tarefa", "nome": "Closed", "id": "C6" },
+    { "tipo": "Tarefa", "nome": "Caused_by_CI", "id": "CBC12" },
+    { "tipo": "Tarefa", "nome": "Quality_Indicator_Fixed", "id": "QIF23" }
+  ],
+  "Situacoes": [
+    { "operador": "REQ", "esquerda": [{ "id": "U6" }], "direita": [{ "id": "O4" }] },
+    { "operador": "DEP", "esquerda": [{ "id": "A10" }], "direita": [{ "id": "O4" }] },
+    { "operador": "DEP", "esquerda": [{ "id": "C6" }], "direita": [{ "id": "O4" }] },
+    { "operador": "REQ", "esquerda": [{ "id": "SC13" }], "direita": [{ "id": "O4" }] },
+    { "operador": "DEP", "esquerda": [{ "id": "OU15" }], "direita": [{ "id": "U6" }] },
+    { "operador": "DEP", "esquerda": [{ "id": "C6" }], "direita": [{ "id": "A10" }] },
+    { "operador": "REQ", "esquerda": [{ "id": "QIF23" }], "direita": [{ "id": "C6" }] },
+    { "operador": "REQ", "esquerda": [{ "id": "CBC12" }], "direita": [{ "id": "O4" }] },
+
+    { "operador": "JMP", "esquerda": [{ "id": "O4" }], "direita": [{ "id": "A10" }] },
+    { "operador": "JMP", "esquerda": [{ "id": "A10" }], "direita": [{ "id": "C6" }] },
+    { "operador": "JMP", "esquerda": [{ "id": "A10" }], "direita": [{ "id": "A10" }] }
+  ]
+}

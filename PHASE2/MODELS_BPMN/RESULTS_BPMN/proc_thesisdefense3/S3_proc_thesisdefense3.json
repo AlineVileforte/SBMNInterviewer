@@ -1,0 +1,383 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "ARFD26"
+      ]
+    },
+    {
+      "id": "ARFD26",
+      "name": "Advisor_Request_for_Defense",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "XOR_JMPBB_SDR25_RDD19"
+      ]
+    },
+    {
+      "id": "RDD19",
+      "name": "Review_Defense_Data",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPBB_SDR25_RDD19"
+      ],
+      "outComing": [
+        "ASC24"
+      ]
+    },
+    {
+      "id": "ASC24",
+      "name": "Ask_Student_Confirmation",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "RDD19"
+      ],
+      "outComing": [
+        "SRR25"
+      ]
+    },
+    {
+      "id": "SRR25",
+      "name": "Student_Response_Received",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "ASC24"
+      ],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "SRR25"
+      ],
+      "outComing": [
+        "SDR25",
+        "DC17"
+      ]
+    },
+    {
+      "id": "SDR25",
+      "name": "Student_Defence_Rejection",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XOR_JMPAA_SDR25_RDD19"
+      ]
+    },
+    {
+      "id": "DC17",
+      "name": "Defense_Confirmed",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "CAR31"
+      ]
+    },
+    {
+      "id": "CAR31",
+      "name": "Coordination_Approval_Requested",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "DC17"
+      ],
+      "outComing": [
+        "CR21"
+      ]
+    },
+    {
+      "id": "CR21",
+      "name": "Coordination_Response",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "CAR31"
+      ],
+      "outComing": [
+        "G1"
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "G1",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "CR21"
+      ],
+      "outComing": [
+        "DA18",
+        "JFDDR41"
+      ]
+    },
+    {
+      "id": "DA18",
+      "name": "Defense_Authorized",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.1.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "Par12"
+      ]
+    },
+    {
+      "id": "JFDDR41",
+      "name": "Justification_for_Denied_Defense_Reported",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.2.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "SDODTA31"
+      ]
+    },
+    {
+      "id": "Par12",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.2.0.1.",
+      "inComing": [
+        "DA18"
+      ],
+      "outComing": [
+        "GD18",
+        "NC16"
+      ]
+    },
+    {
+      "id": "GD18",
+      "name": "Generate_Documents",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.1.1.1.",
+      "inComing": [
+        "Par12"
+      ],
+      "outComing": [
+        "XOR_JMPBB_TUDE30_DUR29"
+      ]
+    },
+    {
+      "id": "NC16",
+      "name": "Notify_Committee",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.1.1.2.",
+      "inComing": [
+        "Par12"
+      ],
+      "outComing": [
+        "PARCLOSE17"
+      ]
+    },
+    {
+      "id": "SDODTA31",
+      "name": "Send_Deny_of_Defense_to_Advisor",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.2.",
+      "inComing": [
+        "JFDDR41"
+      ],
+      "outComing": [
+        "XORCLOSE23"
+      ]
+    },
+    {
+      "id": "DUR29",
+      "name": "Dissertation_Upload_Requested",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.1.1.1.",
+      "inComing": [
+        "XOR_JMPBB_TUDE30_DUR29"
+      ],
+      "outComing": [
+        "PARCLOSE17"
+      ]
+    },
+    {
+      "id": "PARCLOSE17",
+      "name": "PARCLOSE17",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.2.0.1.1.1.",
+      "inComing": [
+        "DUR29",
+        "NC16"
+      ],
+      "outComing": [
+        "G3"
+      ]
+    },
+    {
+      "id": "G3",
+      "name": "G3",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.0.1.",
+      "inComing": [
+        "PARCLOSE17"
+      ],
+      "outComing": [
+        "TU15",
+        "TUDE30"
+      ]
+    },
+    {
+      "id": "TUDE30",
+      "name": "Thesis_upload_Deadline_Expired",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.1.0.2.",
+      "inComing": [
+        "G3"
+      ],
+      "outComing": [
+        "XOR_JMPAA_TUDE30_DUR29"
+      ]
+    },
+    {
+      "id": "TU15",
+      "name": "Thesis_uploaded",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.1.0.1.",
+      "inComing": [
+        "G3"
+      ],
+      "outComing": [
+        "STTC24"
+      ]
+    },
+    {
+      "id": "STTC24",
+      "name": "Send_Thesis_to_Committee",
+      "type": "TASK",
+      "branch": "0.0.0.2.0.1.0.1.",
+      "inComing": [
+        "TU15"
+      ],
+      "outComing": [
+        "XORCLOSE22"
+      ]
+    },
+    {
+      "id": "XORCLOSE22",
+      "name": "XORCLOSE22",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.0.1.0.2.",
+      "inComing": [
+        "STTC24",
+        "XOR_JMPAA_TUDE30_DUR29"
+      ],
+      "outComing": [
+        "XORCLOSE23"
+      ]
+    },
+    {
+      "id": "XORCLOSE23",
+      "name": "XORCLOSE23",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.0.2.",
+      "inComing": [
+        "SDODTA31",
+        "XORCLOSE22"
+      ],
+      "outComing": [
+        "XORCLOSE24"
+      ]
+    },
+    {
+      "id": "XORCLOSE24",
+      "name": "XORCLOSE24",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "XORCLOSE23",
+        "XOR_JMPAA_SDR25_RDD19"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "XORCLOSE24"
+      ],
+      "outComing": []
+    },
+    {
+      "id": "XOR_JMPAA_SDR25_RDD19",
+      "name": "XOR_JMPAA_Student_Defence_Rejection",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "SDR25"
+      ],
+      "outComing": [
+        "XORCLOSE24",
+        "XOR_JMPBB_SDR25_RDD19"
+      ]
+    },
+    {
+      "id": "XOR_JMPBB_SDR25_RDD19",
+      "name": "XOR_JMPBB_Review_Defense_Data",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "ARFD26",
+        "XOR_JMPAA_SDR25_RDD19"
+      ],
+      "outComing": [
+        "RDD19"
+      ]
+    },
+    {
+      "id": "XOR_JMPAA_TUDE30_DUR29",
+      "name": "XOR_JMPAA_Thesis_upload_Deadline_Expired",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.0.1.0.2.",
+      "inComing": [
+        "TUDE30"
+      ],
+      "outComing": [
+        "XORCLOSE22",
+        "XOR_JMPBB_TUDE30_DUR29"
+      ]
+    },
+    {
+      "id": "XOR_JMPBB_TUDE30_DUR29",
+      "name": "XOR_JMPBB_Dissertation_Upload_Requested",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.0.1.1.1.",
+      "inComing": [
+        "GD18",
+        "XOR_JMPAA_TUDE30_DUR29"
+      ],
+      "outComing": [
+        "DUR29"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "IP15"
+      ]
+    },
+    {
+      "id": "IP15",
+      "name": "Initial_Petition",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "IP15"
+      ],
+      "outComing": [
+        "SOD20",
+        "XORCLOSE4"
+      ]
+    },
+    {
+      "id": "SOD20",
+      "name": "Statement_of_Defense",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE4"
+      ]
+    },
+    {
+      "id": "XORCLOSE4",
+      "name": "XORCLOSE4",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "SOD20",
+        "G0"
+      ],
+      "outComing": [
+        "G1"
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "G1",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE4"
+      ],
+      "outComing": [
+        "RTTD20",
+        "XORCLOSE8"
+      ]
+    },
+    {
+      "id": "RTTD20",
+      "name": "Reply_to_the_Defense",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G1"
+      ],
+      "outComing": [
+        "XORCLOSE8"
+      ]
+    },
+    {
+      "id": "XORCLOSE8",
+      "name": "XORCLOSE8",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "RTTD20",
+        "G1"
+      ],
+      "outComing": [
+        "G2"
+      ]
+    },
+    {
+      "id": "G2",
+      "name": "G2",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE8"
+      ],
+      "outComing": [
+        "EP19",
+        "XORCLOSE12"
+      ]
+    },
+    {
+      "id": "EP19",
+      "name": "Evidence_Production",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G2"
+      ],
+      "outComing": [
+        "XORCLOSE12"
+      ]
+    },
+    {
+      "id": "XORCLOSE12",
+      "name": "XORCLOSE12",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "EP19",
+        "G2"
+      ],
+      "outComing": [
+        "G4"
+      ]
+    },
+    {
+      "id": "G4",
+      "name": "G4",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE12"
+      ],
+      "outComing": [
+        "CMD24",
+        "XORCLOSE16"
+      ]
+    },
+    {
+      "id": "CMD24",
+      "name": "Case_Management_Decision",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G4"
+      ],
+      "outComing": [
+        "XORCLOSE16"
+      ]
+    },
+    {
+      "id": "XORCLOSE16",
+      "name": "XORCLOSE16",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "CMD24",
+        "G4"
+      ],
+      "outComing": [
+        "Par17"
+      ]
+    },
+    {
+      "id": "Par17",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE16"
+      ],
+      "outComing": [
+        "NFEP29",
+        "CA17"
+      ]
+    },
+    {
+      "id": "NFEP29",
+      "name": "Notice_for_Evidence_Production",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Par17"
+      ],
+      "outComing": [
+        "PARCLOSE20"
+      ]
+    },
+    {
+      "id": "CA17",
+      "name": "Closing_Arguments",
+      "type": "TASK",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Par17"
+      ],
+      "outComing": [
+        "PARCLOSE20"
+      ]
+    },
+    {
+      "id": "PARCLOSE20",
+      "name": "PARCLOSE20",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "CA17",
+        "NFEP29"
+      ],
+      "outComing": [
+        "J8"
+      ]
+    },
+    {
+      "id": "J8",
+      "name": "Judgment",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "PARCLOSE20"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.",
+      "inComing": [
+        "J8"
+      ],
+      "outComing": []
+    }
+  ]
+}
